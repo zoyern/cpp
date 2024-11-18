@@ -6,7 +6,7 @@
 #    By: almounib <almounib@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/11/17 17:06:35 by almounib         ###   ########.fr        #
+#    Updated: 2024/11/18 23:17:17 by almounib         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BUILD_DIR	=	build
 NAME		=	megaphone
 CFLAG		=	-Wall -Wextra -Werror -g3 -std=c++98
 
-SRC			=	megaphone.cpp
+SRC			=	main.cpp
 CC			=	g++
 
 OBJ		=	$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o, $(SRC))
