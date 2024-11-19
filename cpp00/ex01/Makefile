@@ -6,13 +6,13 @@
 #    By: almounib <almounib@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/11/18 23:17:17 by almounib         ###   ########.fr        #
+#    Updated: 2024/11/19 18:56:46 by almounib         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR		=
 BUILD_DIR	=	build
-NAME		=	megaphone
+NAME		=	phonebook
 CFLAG		=	-Wall -Wextra -Werror -g3 -std=c++98
 
 SRC			=	main.cpp
