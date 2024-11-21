@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:17:10 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/21 23:42:46 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 00:29:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,26 @@
 #include <iomanip>
 #include <cstdlib>
 
-PhoneBook::PhoneBook() : _index(0) {
+PhoneBook::PhoneBook() : _index(0)
+{
 	for (size_t i = 0; i < LIST_SIZE; ++i)
 		_folder[i].index = i + 1;
 }
 
-void	PhoneBook::add() {
+void	PhoneBook::add()
+{
 	return (_folder[(_index) % LIST_SIZE] = Contact(_index),
 		std::cout << "\033[2J\033[1;1H",
 		_folder[(_index) % LIST_SIZE].show(true),
 		(void)(++_index %= LIST_SIZE));
 }
 
-void	PhoneBook::get() { std::string fields[] = FIELDS; std::string input; int number; std::string index = "index";
+void	PhoneBook::get()
+{
+	std::string fields[] = FIELDS;
+	std::string input; int number;
+	std::string index = "index";
+
 	std::cout << "\033[36;47;4m╔══❖═══════❖══════════❖══════════❖════════❖══╗\n";
 	std::cout << "║" << std::setw(10) << (index.length() > 10 ? index.substr(0, 9) + "." : index) << "|";
 	for (size_t i = 0; i < FIELDS_SIZE && i < FIELD_SHOW; i++)
@@ -48,7 +55,8 @@ void	PhoneBook::get() { std::string fields[] = FIELDS; std::string input; int nu
 	_folder[number - 1].show(true);
 }
 
-void	PhoneBook::prompt() {
+void	PhoneBook::prompt()
+{
 	std::cout << "\033[36;47;4m╔══❖═══════❖═══════❖═══════❖═══════❖═══════❖═══════❖═══════❖══╗\033[0m\n";
 	std::cout << "\033[36;47;4m║                     Welcome in PhoneBook                    ║\033[0m\n";
 	std::cout << "\033[36;47;4m║                                                             ║\033[0m\n";
@@ -64,6 +72,7 @@ void	PhoneBook::prompt() {
 int		PhoneBook::input()
 {
 	std::string	input;
+
 	while (1)
 	{
 		prompt();

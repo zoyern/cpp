@@ -6,13 +6,13 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/11/21 23:46:48 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/22 00:39:13 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR		=
 BUILD_DIR	=	build
-NAME		=	megaphone
+NAME		=	account
 CFLAG		=	-Wall -Wextra -Werror -g3 -std=c++98
 
 SRC			=	tests.cpp Account.cpp

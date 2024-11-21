@@ -6,19 +6,25 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:15:16 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/21 23:38:00 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 00:27:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include <iomanip>
 
-Contact::Contact() { std::string fields[] = FIELDS;
+Contact::Contact()
+{
+	std::string fields[] = FIELDS;
+
 	for (size_t i = 0; i < FIELDS_SIZE; ++i)
 		_fields[i] = "empty", index = -1;
 }
 
-Contact::Contact(int id) { std::string fields[] = FIELDS;
+Contact::Contact(int id)
+{
+	std::string fields[] = FIELDS;
+
     for (size_t i = 0; i < FIELDS_SIZE; ++i)
 	{
         do {
@@ -30,7 +36,10 @@ Contact::Contact(int id) { std::string fields[] = FIELDS;
 	index = id;
 }
 
-void	Contact::show(bool endline){ std::string fields[] = FIELDS; std::string strindex = "index";
+void	Contact::show(bool endline){
+	std::string fields[] = FIELDS;
+	std::string strindex = "index";
+
 	if (endline)
 	{
     	std::cout << "\n\033[36;47;4m╔══❖═══════❖══════════❖══════════❖════════❖══╗\n";
