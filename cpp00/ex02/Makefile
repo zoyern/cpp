@@ -6,16 +6,16 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/11/21 22:50:26 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/21 23:46:48 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR		=
 BUILD_DIR	=	build
-NAME		=	phonebook
+NAME		=	megaphone
 CFLAG		=	-Wall -Wextra -Werror -g3 -std=c++98
 
-SRC			=	main.cpp PhoneBook.cpp Contact.cpp
+SRC			=	tests.cpp Account.cpp
 CC			=	g++
 
 OBJ		=	$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o, $(SRC))

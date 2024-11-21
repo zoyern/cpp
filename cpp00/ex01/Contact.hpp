@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:15:16 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/21 22:10:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/21 22:43:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@
 #  define FIELD_SHOW 3
 # endif
 
-
 class Contact {
 	private:
 		std::string _fields[FIELDS_SIZE];
 	public:
-		int		index;
 		Contact();
 		Contact(int id);
-		~Contact();
+		int		index;
 		void	show(bool endline);
 };
 

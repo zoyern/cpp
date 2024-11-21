@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:17:10 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/21 20:48:08 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/21 22:51:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 #  define CMD_EXIT "EXIT"
 # endif
 
+# include "Contact.hpp"
 
 class PhoneBook {
 	private:
@@ -37,7 +38,6 @@ class PhoneBook {
 		Contact	_folder[LIST_SIZE];
 	public:
 		PhoneBook();
-		~PhoneBook();
 		void	add();
 		void	get();
 		void	prompt();
