@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:17:10 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 00:29:00 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 16:17:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <cstdlib>
 
+PhoneBook::~PhoneBook() {}
 PhoneBook::PhoneBook() : _index(0)
 {
 	for (size_t i = 0; i < LIST_SIZE; ++i)

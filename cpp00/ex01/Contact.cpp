@@ -6,13 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:15:16 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 00:27:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 16:16:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include <iomanip>
 
+Contact::~Contact() {}
 Contact::Contact()
 {
 	std::string fields[] = FIELDS;

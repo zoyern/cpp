@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:15:16 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/21 22:43:41 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 16:13:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Contact {
 		std::string _fields[FIELDS_SIZE];
 	public:
 		Contact();
+		~Contact();
 		Contact(int id);
 		int		index;
 		void	show(bool endline);

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:06:56 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 00:52:16 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 15:16:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	Account::makeDeposit(int deposit) {
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount - deposit << ";deposit:" << deposit << ";amount:" << _amount << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
-bool	Account::makeWithdrawal(int withdrawal) { _displayTimestamp();
+bool	Account::makeWithdrawal(int withdrawal) {
+	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:";
 	if (withdrawal > _amount)
 		return (std::cout << "refused" << std::endl, false);
@@ -72,7 +73,10 @@ void	Account::displayStatus() const { _displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";deposits:" << _nbDeposits << ";withdrawals:" << _nbWithdrawals << std::endl;
 }
 
-void	Account::_displayTimestamp() { std::time_t time = std::time(0); std::tm now = *std::localtime(&time);
+void	Account::_displayTimestamp() {
+	std::time_t time = std::time(0);
+	std::tm now = *std::localtime(&time);
+
 	std::cout << "[" << (now.tm_year + 1900) << std::setfill('0')
 		<< std::setw(2) << now.tm_mon + 1
 		<< std::setw(2) << now.tm_mday << "_"

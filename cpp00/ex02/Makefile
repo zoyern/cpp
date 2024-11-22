@@ -6,46 +6,47 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/11/22 00:39:13 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/22 16:22:13 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_DIR		=
-BUILD_DIR	=	build
-NAME		=	account
-CFLAG		=	-Wall -Wextra -Werror -g3 -std=c++98
 
-SRC			=	tests.cpp Account.cpp
-CC			=	g++
+NAME        = globalbanksters
 
-OBJ		=	$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o, $(SRC))
+BUILD_DIR   = build
+OBJ_DIR     = $(BUILD_DIR)/obj
+DEP_DIR     = $(BUILD_DIR)/dep
 
+CC          = g++
+CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
+DEPFLAG     = -MMD -MP
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)
-	@$(CC)	$(CFLAG)	-c	$< -o	$@
-	@clear
-	
+SRC         = tests.cpp Account.cpp
+OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
+DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
+
+-include $(DEP)
+
 all: $(NAME)
 
-$(NAME):$(OBJ)
-	@echo $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME) $(CFLAG)
-	@clear
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME) $(CFLAG)
+	@echo "Compilation réussie !"
 
-clear :
-	@clear
-	@echo "42 - PARIS : $(NAME)"
-	@echo ""
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+	$(CC) $(CFLAG) $(DEPFLAG) -c $< -o $@
+	@mv $(basename $@).d $(DEP_DIR)/$(notdir $(basename $@)).d
 
-clean : clear
-	@rm -rf build/
+clean:
+	@rm -rf $(BUILD_DIR)
 	@echo "Clean   : ./$(BUILD_DIR) !"
 
-fclean : clean
+fclean: clean
 	@rm -f $(NAME)
 	@echo "Clean   : ./$(NAME)"
 
-re: fclean all clear 
+re: fclean all
 
+# PHONY
 .PHONY: all clean fclean re
