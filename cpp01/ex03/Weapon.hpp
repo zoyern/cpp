@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 16:37:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/22 16:37:34 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/22 16:37:36 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/22 16:37:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
 
-Zombie::~Zombie() { std::cout << _name << PRINT_DIE << std::endl;}
-Zombie::Zombie() : _name("Unnamed Zombie") {}
-Zombie::Zombie(std::string name) : _name(name) {}
-void	Zombie::announce() { std::cout << _name << PRINT << std::endl;}
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
+
+# include <iostream>
+# include <cstdlib>
+
+# ifndef VAR
+#  define ATTACK " attacks with their "
+#  define W_DEFAULT "hands"
+# endif
+
+class Weapon {
+	private:
+		std::string	_type;
+	public:
+		Weapon();
+		Weapon(const std::string type);
+		~Weapon();
+		std::string	&getType();
+		void		setType(const std::string type);
+};
+
+#endif

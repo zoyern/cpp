@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "HumanA.hpp"
 
-Zombie::~Zombie() { std::cout << _name << PRINT_DIE << std::endl;}
-Zombie::Zombie() : _name("Unnamed Zombie") {}
-Zombie::Zombie(std::string name) : _name(name) {}
-void	Zombie::announce() { std::cout << _name << PRINT << std::endl;}
+HumanA::~HumanA() {}
+HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon) {}
+void		HumanA::attack() { std::cout << _name << ATTACK << _weapon.getType() << std::endl;}

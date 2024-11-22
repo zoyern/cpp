@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 16:37:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/22 16:37:34 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/22 16:37:36 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/22 16:37:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
 
-Zombie::~Zombie() { std::cout << _name << PRINT_DIE << std::endl;}
-Zombie::Zombie() : _name("Unnamed Zombie") {}
-Zombie::Zombie(std::string name) : _name(name) {}
-void	Zombie::announce() { std::cout << _name << PRINT << std::endl;}
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
+
+# include <iostream>
+# include <cstdlib>
+# include "Weapon.hpp"
+
+class HumanA {
+	private:
+		std::string	_name;
+		Weapon		&_weapon;
+	public:
+		HumanA(std::string name, Weapon &weapon);
+		~HumanA();
+		void	attack();
+};
+
+#endif

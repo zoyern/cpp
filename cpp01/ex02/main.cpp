@@ -10,34 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+# include <iostream>
 
 int main()
 {
-	// on stack
-	std::cout << "On stack (destroy when func exit) :" << std::endl << std::endl;
-	randomChump("JOE");
-	randomChump("MICHELLE");
-	randomChump("KARINE");
-	randomChump("BORIS");
+	std::string	string = "HI THIS IS BRAIN";
+	std::string	*stringPTR = &string;
+	std::string	&stringREF = string;
 
-	// on heap
-	std::cout << std::endl << "On heap (destroy when use delete() ) :" << std::endl << std::endl;
-	Zombie	*joe = newZombie("JOE");
-	Zombie	*michelle = newZombie("MICHELLE");
-	Zombie	*karine = newZombie("KARINE");
-	Zombie	*boris = newZombie("BORIS");
-
-	boris->announce();
-	joe->announce();
-	karine->announce();
-	michelle->announce();
-
-	delete(joe);
-	delete(michelle);
-	boris->announce();
-	delete(boris);
-	delete(karine);
-
-	return 0;
+	std::cout << "adresse de la string en mémoire\t: " << &string << std::endl;
+	std::cout << "adresse stockée dans stringPTR\t: " <<  &stringPTR << std::endl;
+	std::cout << "adresse stockée dans stringREF\t: " << &stringREF << std::endl;
+	std::cout << std::endl;
+	std::cout << "valeur de la string\t\t: " << string << std::endl;
+	std::cout << "valeur pointée par stringPTR\t: " << stringPTR << std::endl;
+	std::cout << "valeur pointée par stringREF\t: " << stringREF << std::endl;
+	return (0);
 }

@@ -10,34 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int main()
 {
-	// on stack
-	std::cout << "On stack (destroy when func exit) :" << std::endl << std::endl;
-	randomChump("JOE");
-	randomChump("MICHELLE");
-	randomChump("KARINE");
-	randomChump("BORIS");
-
-	// on heap
-	std::cout << std::endl << "On heap (destroy when use delete() ) :" << std::endl << std::endl;
-	Zombie	*joe = newZombie("JOE");
-	Zombie	*michelle = newZombie("MICHELLE");
-	Zombie	*karine = newZombie("KARINE");
-	Zombie	*boris = newZombie("BORIS");
-
-	boris->announce();
-	joe->announce();
-	karine->announce();
-	michelle->announce();
-
-	delete(joe);
-	delete(michelle);
-	boris->announce();
-	delete(boris);
-	delete(karine);
-
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	std::cout << std::endl;
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.attack();
+		jim.setWeapon(&club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
 	return 0;
 }

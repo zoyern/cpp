@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 16:37:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/22 16:37:34 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/22 16:36:35 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/22 16:36:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::~Zombie() { std::cout << _name << PRINT_DIE << std::endl;}
-Zombie::Zombie() : _name("Unnamed Zombie") {}
-Zombie::Zombie(std::string name) : _name(name) {}
-void	Zombie::announce() { std::cout << _name << PRINT << std::endl;}
+Zombie*	zombieHorde(int N, std::string name) { if (N <= 0) return (NULL);
+	Zombie *zombies = new Zombie[N];
+
+	for (int i = 0; i < N; i++) zombies[i].set(name);
+	return (zombies);
+}
+

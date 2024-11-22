@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
 
-Zombie::~Zombie() { std::cout << _name << PRINT_DIE << std::endl;}
-Zombie::Zombie() : _name("Unnamed Zombie") {}
-Zombie::Zombie(std::string name) : _name(name) {}
-void	Zombie::announce() { std::cout << _name << PRINT << std::endl;}
+Weapon::~Weapon() {}
+Weapon::Weapon() : _type("Hands") {}
+Weapon::Weapon(const std::string type) : _type(type) {}
+std::string	&Weapon::getType() { return (_type);}
+void		Weapon::setType(const std::string type) { this->_type = type;}

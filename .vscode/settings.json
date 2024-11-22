@@ -1,5 +1,7 @@
 {
 	"files.associations": {
+		"iostream": "cpp",
+		"cstdlib": "cpp",
 		"array": "cpp",
 		"atomic": "cpp",
 		"*.tcc": "cpp",
@@ -10,7 +12,6 @@
 		"cstddef": "cpp",
 		"cstdint": "cpp",
 		"cstdio": "cpp",
-		"cstdlib": "cpp",
 		"cstring": "cpp",
 		"ctime": "cpp",
 		"cwchar": "cpp",
@@ -35,7 +36,6 @@
 		"initializer_list": "cpp",
 		"iomanip": "cpp",
 		"iosfwd": "cpp",
-		"iostream": "cpp",
 		"istream": "cpp",
 		"limits": "cpp",
 		"new": "cpp",

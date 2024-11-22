@@ -15,6 +15,12 @@
 # define ZOMBIE_HPP
 
 # include <iostream>
+# include <cstdlib>
+
+# ifndef HORDE
+#  define HORDE 5
+#  define HORDE_NAME "Unamed Zombie Horde"
+# endif
 
 # ifndef PRINT
 #  define PRINT ": BraiiiiiiinnnzzzZ..."
@@ -28,10 +34,11 @@ class Zombie {
 		Zombie();
 		Zombie(std::string name);
 		~Zombie();
+		std::string	get();
+		void		set(std::string name);
 		void	announce();
 };
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

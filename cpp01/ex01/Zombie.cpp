@@ -15,4 +15,6 @@
 Zombie::~Zombie() { std::cout << _name << PRINT_DIE << std::endl;}
 Zombie::Zombie() : _name("Unnamed Zombie") {}
 Zombie::Zombie(std::string name) : _name(name) {}
-void	Zombie::announce() { std::cout << _name << PRINT << std::endl;}
+std::string	Zombie::get() { return (_name);}
+void		Zombie::set(std::string name) { _name = name;}
+void		Zombie::announce() { std::cout << _name << PRINT << std::endl;}
