@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 23:15:16 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 16:13:25 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/22 16:37:36 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/22 16:37:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
+
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 # include <iostream>
 
-# ifndef FIELDS
-#  define FIELDS {"first name", "last name", "nickname", "phone number", "darkest secret"}
-#  define FIELDS_SIZE 5
-#  define FIELD_SHOW 3
+# ifndef PRINT
+#  define PRINT ": BraiiiiiiinnnzzzZ..."
+#  define PRINT_DIE ": MORT !"
 # endif
 
-class Contact {
+class Zombie {
 	private:
-		std::string _fields[FIELDS_SIZE];
+		std::string	_name;
 	public:
-		Contact();
-		~Contact();
-		Contact(int id);
-		int		index;
-		void	show(bool endline);
+		Zombie(std::string name);
+		~Zombie();
+		void	announce();
 };
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif
