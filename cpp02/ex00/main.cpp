@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 16:37:36 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/22 16:37:36 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/22 16:36:29 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/22 16:36:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Fixed.hpp"
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
-
-# include <iostream>
-# include <cstdlib>
-# include "Weapon.hpp"
-
-class HumanB {
-	private:
-		std::string	_name;
-		Weapon		*_weapon;
-	public:
-		~HumanB();
-		HumanB(std::string name);
-		void	attack();
-		void	setWeapon(Weapon *weapon);
-};
-
-#endif
+int main( void ) {
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
+}

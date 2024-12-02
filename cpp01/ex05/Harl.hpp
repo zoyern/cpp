@@ -31,11 +31,11 @@ class Harl {
 	private:
 		void		debug();
 		void		info();
-		void		warning(void);
-		void		error( void );
+		void		warning();
+		void		error();
 	public:
-		Harl();
 		~Harl();
+		Harl();
 		void	complain(std::string level);
 };
 

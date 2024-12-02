@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 16:37:36 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/22 16:37:36 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/22 16:36:29 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/22 16:36:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Fixed.hpp"
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
-
-# include <iostream>
-# include <cstdlib>
-# include "Weapon.hpp"
-
-class HumanB {
-	private:
-		std::string	_name;
-		Weapon		*_weapon;
-	public:
-		~HumanB();
-		HumanB(std::string name);
-		void	attack();
-		void	setWeapon(Weapon *weapon);
-};
-
-#endif
+int main( void ) {
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return 0;
+}

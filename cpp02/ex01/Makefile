@@ -6,12 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/12/02 16:48:55 by marvin           ###   ########.fr        #
+#    Updated: 2024/12/02 19:20:05 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME        = megaphone
+NAME        = fixed
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj
@@ -21,7 +20,7 @@ CC          = g++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = megaphone.cpp
+SRC         = main.cpp Fixed.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 

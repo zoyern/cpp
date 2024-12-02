@@ -11,22 +11,26 @@
 /* ************************************************************************** */
 
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#ifndef POINT_HPP
+# define POINT_HPP
 
 # include <iostream>
-# include <cstdlib>
-# include "Weapon.hpp"
+# include <cmath>
+# include "Fixed.hpp"
 
-class HumanB {
+class Point {
 	private:
-		std::string	_name;
-		Weapon		*_weapon;
+		const Fixed	_x;
+		const Fixed	_y;
 	public:
-		~HumanB();
-		HumanB(std::string name);
-		void	attack();
-		void	setWeapon(Weapon *weapon);
+		~Point();
+		Point();
+		Point(const Point &point);
+		Point(const float x, const float y);
+		Point	&operator=(const Point &point);
+
+		Fixed	getX() const;
+		Fixed	getY() const;
 };
 
 #endif

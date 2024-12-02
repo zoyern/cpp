@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:17:10 by almounib          #+#    #+#             */
-/*   Updated: 2024/12/02 13:18:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 14:08:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ class PhoneBook {
 		int		_index;
 		Contact	_folder[LIST_SIZE];
 	public:
-		PhoneBook();
 		~PhoneBook();
+		PhoneBook();
 		void	add();
 		void	get();
 		void	prompt();

@@ -11,22 +11,31 @@
 /* ************************************************************************** */
 
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 # include <iostream>
-# include <cstdlib>
-# include "Weapon.hpp"
 
-class HumanB {
+#ifndef CONFIG
+#  define BITS 8
+#  define PRINT_DESTROY "Destructor called"
+#  define PRINT_DEFAULT "Default constructor called"
+#  define PRINT_COPY "Copy constructor called"
+#  define PRINT_ASSIGNEMENT "Copy assignment operator called"
+#  define PRINT_GET "getRawBits member function called"
+#endif
+
+class Fixed {
 	private:
-		std::string	_name;
-		Weapon		*_weapon;
+		int					_value;
+		static const int	_bits;
 	public:
-		~HumanB();
-		HumanB(std::string name);
-		void	attack();
-		void	setWeapon(Weapon *weapon);
+		~Fixed();
+		Fixed();
+		Fixed(const Fixed &fixed);
+		Fixed	&operator=(const Fixed &fixed);
+		int		getRawBits() const;
+		void	setRawBits(int const raw);
 };
 
 #endif

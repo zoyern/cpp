@@ -31,12 +31,12 @@ class Zombie {
 	private:
 		std::string	_name;
 	public:
+		~Zombie();
 		Zombie();
 		Zombie(std::string name);
-		~Zombie();
 		std::string	get();
 		void		set(std::string name);
-		void	announce();
+		void		announce();
 };
 
 Zombie*	zombieHorde(int N, std::string name);

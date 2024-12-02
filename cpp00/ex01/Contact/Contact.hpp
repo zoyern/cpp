@@ -25,8 +25,8 @@ class Contact {
 	private:
 		std::string _fields[FIELDS_SIZE];
 	public:
-		Contact();
 		~Contact();
+		Contact();
 		Contact(int id);
 		int		index;
 		void	show(bool endline);
