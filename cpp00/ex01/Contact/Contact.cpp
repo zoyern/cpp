@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:15:16 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 16:16:47 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 12:44:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ Contact::Contact(int id)
         do {
 			std::cout << "\033[36;47;3;1m❖ " << fields[i] << "  \033[0m\033[37m\033[0m" << std::endl;
             std::getline(std::cin, _fields[i]);
-        }
-		while (_fields[i].empty());
+        } while (_fields[i].empty() && !std::cin.eof());
 	}
 	index = id;
 }

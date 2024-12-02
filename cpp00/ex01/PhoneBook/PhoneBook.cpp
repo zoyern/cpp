@@ -6,15 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:17:10 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 16:17:18 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:42:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
-#include <iostream>
-#include <iomanip>
-#include <cstdlib>
 
 PhoneBook::~PhoneBook() {}
 PhoneBook::PhoneBook() : _index(0)
@@ -25,7 +21,7 @@ PhoneBook::PhoneBook() : _index(0)
 
 void	PhoneBook::add()
 {
-	return (_folder[(_index) % LIST_SIZE] = Contact(_index),
+	return (_folder[(_index) % LIST_SIZE] = Contact(_index + 1),
 		std::cout << "\033[2J\033[1;1H",
 		_folder[(_index) % LIST_SIZE].show(true),
 		(void)(++_index %= LIST_SIZE));
@@ -48,6 +44,8 @@ void	PhoneBook::get()
 	do {
 		std::cout << "\033[36;47;3;1m❖ Entrez un nombre entre 1 et " << LIST_SIZE << "  \033[0m\033[37m\033[0m";
         std::getline(std::cin, input);
+		if (std::cin.eof())
+			return ;
         number = std::atoi(input.c_str());
         if (number < 1 || number >= LIST_SIZE + 1 || input.empty())
             std::cout << "Le nombre est hors plage ou invalide !" << std::endl;
@@ -84,6 +82,8 @@ int		PhoneBook::input()
 		if (CMD_SEARCH == input)
 			get();
 		if (CMD_EXIT == input)
+			return (0);
+		if (std::cin.eof())
 			return (0);
 	}
 	return (0);

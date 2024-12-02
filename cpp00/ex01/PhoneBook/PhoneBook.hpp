@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 23:17:10 by almounib          #+#    #+#             */
-/*   Updated: 2024/11/22 16:06:16 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:18:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 #  define LIST_SIZE 8
 # endif
 
-# include "Contact.hpp"
+# include "../Contact/Contact.hpp"
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
 
 # ifndef CMD
 #  define CMD_ADD "ADD"

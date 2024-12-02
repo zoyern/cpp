@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/11/22 16:17:56 by marvin           ###   ########.fr        #
+#    Updated: 2024/12/02 13:27:14 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = phonebook
+NAME        = book
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj
@@ -20,7 +20,7 @@ CC          = g++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = main.cpp PhoneBook.cpp Contact.cpp
+SRC         = main.cpp PhoneBook/PhoneBook.cpp Contact/Contact.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 
@@ -33,9 +33,9 @@ $(NAME): $(OBJ)
 	@echo "Compilation réussie !"
 
 $(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+	@mkdir -p $(dir $@) $(dir $(DEP_DIR)/$*)
 	$(CC) $(CFLAG) $(DEPFLAG) -c $< -o $@
-	@mv $(basename $@).d $(DEP_DIR)/$(notdir $(basename $@)).d
+	@mv $(basename $@).d $(DEP_DIR)/$*.d
 
 clean:
 	@rm -rf $(BUILD_DIR)
