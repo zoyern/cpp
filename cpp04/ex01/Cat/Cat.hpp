@@ -10,43 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+
+#ifndef CAT_HPP
+# define CAT_HPP
 
 # include <iostream>
+# include "../Animal/Animal.hpp"
 
-# ifndef PRINT
-	#  define PRINT_DESTROY "destroyed !"
-	#  define PRINT_DEFAULT "constructor called !"
-	#  define PRINT_FAIL "noting... (low energy or already dead !)"
-	#  define PRINT_HEAL "points of health!"
-	#  define PRINT_NEWHEAL "new health :"
-	#  define PRINT_DEATH "noting... (already dead !)"
+# ifndef CAT
+#  define CAT_PRINT "Cat"
+#  define CAT_TYPE "Cat"
+#  define CAT_SOUND "Miaou Miaou !"
+#  define CAT_DEFAULT "created !"
+#  define CAT_DESTROY "killed !"
 # endif
 
-# ifndef CLAPTRAP
-#  define CLAPTRAP_HEALTH 10
-#  define CLAPTRAP_ENERGY 10
-#  define CLAPTRAP_DAMAGE 0
-#  define CLAPTRAP_COST 1
-#  define CLAPTRAP_PRINT "ClapTrap"
-#  define CLAPTRAP_ATTACK "points of damage !"
-# endif
-
-class ClapTrap {
-	protected:
-		std::string	_name;
-		int			_health;
-		int			_energy;
-		int			_damage;
+class Cat : public Animal{
 	public:
-		~ClapTrap();
-		ClapTrap();
-		ClapTrap(std::string name);
+		~Cat();
+		Cat();
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		void	makeSound() const;
 };
 
 #endif
