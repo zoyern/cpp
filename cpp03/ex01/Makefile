@@ -6,12 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/12/02 13:33:21 by marvin           ###   ########.fr        #
+#    Updated: 2024/12/03 00:49:05 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME        = zombie
+NAME        = borderlands
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj
@@ -21,7 +20,7 @@ CC          = g++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = main.cpp Zombie.cpp zombieHorde.cpp
+SRC         = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 

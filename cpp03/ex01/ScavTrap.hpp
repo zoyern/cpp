@@ -11,43 +11,30 @@
 /* ************************************************************************** */
 
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include <iostream>
+# include "ClapTrap.hpp"
 
-# ifndef PRINT
-	#  define PRINT_DESTROY "destroyed !"
-	#  define PRINT_DEFAULT "constructor called !"
-	#  define PRINT_FAIL "noting... (low energy or already dead !)"
-	#  define PRINT_HEAL "points of health!"
-	#  define PRINT_NEWHEAL "new health :"
-	#  define PRINT_DEATH "noting... (already dead !)"
+# ifndef SCAVTRAP
+#  define SCAVTRAP_HEALTH 100
+#  define SCAVTRAP_ENERGY 50
+#  define SCAVTRAP_DAMAGE 20
+#  define SCAVTRAP_COST 1
+#  define SCAVTRAP_PRINT "ScavTrap"
+#  define SCAVTRAP_ATTACK "points of presence !"
 # endif
 
-# ifndef CLAPTRAP
-#  define CLAPTRAP_HEALTH 10
-#  define CLAPTRAP_ENERGY 10
-#  define CLAPTRAP_DAMAGE 0
-#  define CLAPTRAP_COST 1
-#  define CLAPTRAP_PRINT "ClapTrap"
-#  define CLAPTRAP_ATTACK "points of damage !"
-# endif
-
-class ClapTrap {
-	protected:
-		std::string	_name;
-		int			_health;
-		int			_energy;
-		int			_damage;
+class ScavTrap : public ClapTrap{
+	private:
+		bool	_guardGate;
 	public:
-		~ClapTrap();
-		ClapTrap();
-		ClapTrap(std::string name);
+		virtual	~ScavTrap();
+		ScavTrap();
+		ScavTrap(std::string name);
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		virtual void    attack(const std::string &target);
+		void			guardGate();
 };
 
 #endif

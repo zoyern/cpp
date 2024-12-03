@@ -11,43 +11,30 @@
 /* ************************************************************************** */
 
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-# include <iostream>
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-# ifndef PRINT
-	#  define PRINT_DESTROY "destroyed !"
-	#  define PRINT_DEFAULT "constructor called !"
-	#  define PRINT_FAIL "noting... (low energy or already dead !)"
-	#  define PRINT_HEAL "points of health!"
-	#  define PRINT_NEWHEAL "new health :"
-	#  define PRINT_DEATH "noting... (already dead !)"
+# ifndef DIAMONDTRAP
+#  define DIAMONDTRAP_HEALTH FRAGTRAP_HEALTH
+#  define DIAMONDTRAP_ENERGY SCAVTRAP_ENERGY
+#  define DIAMONDTRAP_DAMAGE FRAGTRAP_DAMAGE
+#  define DIAMONDTRAP_COST 1
+#  define DIAMONDTRAP_PRINT "DiamondTrap"
 # endif
 
-# ifndef CLAPTRAP
-#  define CLAPTRAP_HEALTH 10
-#  define CLAPTRAP_ENERGY 10
-#  define CLAPTRAP_DAMAGE 0
-#  define CLAPTRAP_COST 1
-#  define CLAPTRAP_PRINT "ClapTrap"
-#  define CLAPTRAP_ATTACK "points of damage !"
-# endif
-
-class ClapTrap {
-	protected:
+class DiamondTrap : public ScavTrap, public FragTrap{
+	private:
 		std::string	_name;
-		int			_health;
-		int			_energy;
-		int			_damage;
 	public:
-		~ClapTrap();
-		ClapTrap();
-		ClapTrap(std::string name);
+		~DiamondTrap();
+		DiamondTrap();
+		DiamondTrap(std::string name);
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		virtual void    attack(const std::string &target);
+		void whoAmI();
 };
 
 #endif

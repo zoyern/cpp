@@ -11,26 +11,43 @@
 /* ************************************************************************** */
 
 
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include <iostream>
-# include <cstdlib>
 
-# ifndef VAR
-#  define ATTACK " attacks with their "
-#  define W_DEFAULT "hands"
+# ifndef PRINT
+	#  define PRINT_DESTROY "destroyed !"
+	#  define PRINT_DEFAULT "constructor called !"
+	#  define PRINT_FAIL "noting... (low energy or already dead !)"
+	#  define PRINT_HEAL "points of health!"
+	#  define PRINT_NEWHEAL "new health :"
+	#  define PRINT_DEATH "noting... (already dead !)"
 # endif
 
-class Weapon {
-	private:
-		std::string	_type;
+# ifndef CLAPTRAP
+#  define CLAPTRAP_HEALTH 10
+#  define CLAPTRAP_ENERGY 10
+#  define CLAPTRAP_DAMAGE 0
+#  define CLAPTRAP_COST 1
+#  define CLAPTRAP_PRINT "ClapTrap"
+#  define CLAPTRAP_ATTACK "points of damage !"
+# endif
+
+class ClapTrap {
+	protected:
+		std::string	_name;
+		int			_health;
+		int			_energy;
+		int			_damage;
 	public:
-		~Weapon();
-		Weapon();
-		Weapon(const std::string type);
-		std::string	&getType();
-		void		setType(const std::string type);
+		virtual	~ClapTrap();
+		ClapTrap();
+		ClapTrap(std::string name);
+
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 };
 
 #endif

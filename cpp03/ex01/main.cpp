@@ -10,16 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ScavTrap.hpp"
 
-int main(int ac, char **av)
-{
-	int	n;
-	std::string	name;
+int main() {
+    std::cout << "Creating ClapTrap and ScavTrap instances:" << std::endl;
+    
+    ClapTrap claptrap("Claptrap");
+    ScavTrap scavtrap("Scavtrap");
 
-	n = ac > 1 ? std::atoi(av[1]) : HORDE;
-	name = ac > 2 ? av[2] : HORDE_NAME;
-	Zombie	*zombies = zombieHorde(n, name);
-	for (int i = 0; i < n; i++) zombies[i].announce();
-	return (delete[] zombies, 0);
+    std::cout << "\nInitial status and actions:" << std::endl;
+    claptrap.attack("target1");
+    scavtrap.attack("target2");
+
+    scavtrap.guardGate();
+    claptrap.beRepaired(20);
+    scavtrap.beRepaired(20);
+    scavtrap.takeDamage(20);
+    scavtrap.takeDamage(120);
+	scavtrap.guardGate();
+    return 0;
 }

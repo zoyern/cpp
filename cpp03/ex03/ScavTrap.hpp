@@ -11,34 +11,30 @@
 /* ************************************************************************** */
 
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include <iostream>
-# include <cstdlib>
+# include "ClapTrap.hpp"
 
-# ifndef HORDE
-#  define HORDE 5
-#  define HORDE_NAME "Unamed Zombie Horde"
+# ifndef SCAVTRAP
+#  define SCAVTRAP_HEALTH 100
+#  define SCAVTRAP_ENERGY 50
+#  define SCAVTRAP_DAMAGE 20
+#  define SCAVTRAP_COST 1
+#  define SCAVTRAP_PRINT "ScavTrap"
+#  define SCAVTRAP_ATTACK "points of presence !"
 # endif
 
-# ifndef PRINT
-#  define PRINT ": BraiiiiiiinnnzzzZ..."
-#  define PRINT_DIE ": MORT !"
-# endif
-
-class Zombie {
+class ScavTrap : virtual public ClapTrap{
 	private:
-		std::string	_name;
+		bool	_guardGate;
 	public:
-		~Zombie();
-		Zombie();
-		Zombie(std::string name);
-		std::string	get();
-		void		set(std::string name);
-		void		announce();
-};
+		~ScavTrap();
+		ScavTrap();
+		ScavTrap(std::string name);
 
-Zombie*	zombieHorde(int N, std::string name);
+		virtual void    attack(const std::string &target);
+		void			guardGate();
+};
 
 #endif

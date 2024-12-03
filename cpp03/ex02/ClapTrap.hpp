@@ -11,21 +11,43 @@
 /* ************************************************************************** */
 
 
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include <iostream>
-# include <cstdlib>
-# include "Weapon.hpp"
 
-class HumanA {
-	private:
+# ifndef PRINT
+	#  define PRINT_DESTROY "destroyed !"
+	#  define PRINT_DEFAULT "constructor called !"
+	#  define PRINT_FAIL "noting... (low energy or already dead !)"
+	#  define PRINT_HEAL "points of health!"
+	#  define PRINT_NEWHEAL "new health :"
+	#  define PRINT_DEATH "noting... (already dead !)"
+# endif
+
+# ifndef CLAPTRAP
+#  define CLAPTRAP_HEALTH 10
+#  define CLAPTRAP_ENERGY 10
+#  define CLAPTRAP_DAMAGE 0
+#  define CLAPTRAP_COST 1
+#  define CLAPTRAP_PRINT "ClapTrap"
+#  define CLAPTRAP_ATTACK "points of damage !"
+# endif
+
+class ClapTrap {
+	protected:
 		std::string	_name;
-		Weapon		&_weapon;
+		int			_health;
+		int			_energy;
+		int			_damage;
 	public:
-		~HumanA();
-		HumanA(std::string name, Weapon &weapon);
-		void	attack();
+		virtual	~ClapTrap();
+		ClapTrap();
+		ClapTrap(std::string name);
+
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 };
 
 #endif

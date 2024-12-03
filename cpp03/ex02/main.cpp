@@ -10,20 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-int main()
-{
-	std::string	string = "HI THIS IS BRAIN";
-	std::string	*stringPTR = &string;
-	std::string	&stringREF = string;
+int main() {
+    std::cout << "Creating ClapTrap, ScavTrap, and FragTrap instances:" << std::endl;
+    ClapTrap clap("Claptrap");
+    ScavTrap scav("Scavtrap");
+    FragTrap frag("Fragtrap");
 
-	std::cout << "adresse de la string en mémoire\t: " << &string << std::endl;
-	std::cout << "adresse stockée dans stringPTR\t: " <<  &stringPTR << std::endl;
-	std::cout << "adresse stockée dans stringREF\t: " << &stringREF << std::endl;
-	std::cout << std::endl;
-	std::cout << "valeur de la string\t\t: " << string << std::endl;
-	std::cout << "valeur pointée par stringPTR\t: " << stringPTR << std::endl;
-	std::cout << "valeur pointée par stringREF\t: " << stringREF << std::endl;
-	return (0);
+    std::cout << "\nInitial status and actions:" << std::endl;
+    clap.attack("target1");
+    scav.attack("target2");
+    scav.guardGate();
+    frag.attack("target3");
+    frag.highFivesGuys();
+
+    std::cout << "\nPerforming actions:" << std::endl;
+    clap.beRepaired(20);
+    scav.beRepaired(20);
+    frag.beRepaired(20);
+
+    std::cout << "\nDestruction sequence:" << std::endl;
+    // Destructor messages will be printed automatically when objects go out of scope
+
+    return 0;
 }
