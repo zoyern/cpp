@@ -16,6 +16,8 @@
 
 # include <iostream>
 
+# include "../Animal/Animal.hpp"
+
 # ifndef WRONGANIMAL
 #  define WRONGANIMAL_PRINT "WrongAnimal"
 #  define WRONGANIMAL_TYPE "WrongAnimal"
@@ -24,15 +26,12 @@
 #  define WRONGANIMAL_DESTROY "killed !"
 # endif
 
-class WrongAnimal {
-	protected:
-		std::string	_type;
+class WrongAnimal : virtual public Animal{
 	public:
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 		WrongAnimal();
 		WrongAnimal(std::string type);
-		
-		std::string		getType() const;
+
 		virtual void	makeSound() const;
 };
 

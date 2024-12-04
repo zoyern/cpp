@@ -51,6 +51,7 @@ int main(void) {
             << std::endl
             << std::endl;
   const WrongAnimal *meta3 = new WrongAnimal();
+  std::cout << "-------" << std::endl;
   const WrongAnimal *i3 = new WrongCat();
   std::cout << meta3->getType() << " " << std::endl;
   std::cout << i3->getType() << " " << std::endl;

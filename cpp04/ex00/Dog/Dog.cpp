@@ -12,7 +12,7 @@
 
 #include "Dog.hpp"
 
-Dog::~Dog() { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
-Dog::Dog() : Animal(DOG_TYPE) { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
+Dog::~Dog() { std::cout << DOG_PRINT << "\t\t : " << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
+Dog::Dog() : Animal(DOG_TYPE) { std::cout << DOG_PRINT << "\t\t : " << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
 
-void	Dog::makeSound() const { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ]," << " make : [ " << DOG_SOUND  << " ] " << std::endl;}
+void	Dog::makeSound() const { std::cout << DOG_PRINT << "\t\t : " << "type:[ " << _type << " ]," << " make : [ " << DOG_SOUND  << " ] " << std::endl;}
