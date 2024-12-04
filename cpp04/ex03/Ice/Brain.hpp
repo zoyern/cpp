@@ -11,35 +11,31 @@
 /* ************************************************************************** */
 
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include <iostream>
-# include "../Animal/Animal.hpp"
-# include "../Brain/Brain.hpp"
 
-# ifndef DOG
-#  define DOG_PRINT "Dog"
-#  define DOG_TYPE "Dog"
-#  define DOG_SOUND "Woaf Woaf !"
-#  define DOG_DEFAULT "created !"
-#  define DOG_COPY "copy !"
-#  define DOG_DESTROY "killed !"
+# ifndef BRAIN
+#  define BRAIN_IDEAS 100
+#  define BRAIN_PRINT "Brain"
+#  define BRAIN_DEFAULT "created !"
+#  define BRAIN_COPY "copy !"
+#  define BRAIN_DESTROY "destroyed !"
 # endif
 
-class Dog : public Animal{
+class Brain{
 	private:
-		Brain	*_brain;
+		std::string	_ideas[BRAIN_IDEAS];
 	public:
-		~Dog();
-		Dog();
-		Dog(const Dog &dog);
+		~Brain();
+		Brain();
+		Brain(const Brain &brain);
 
-		Dog		&operator=(const Dog &dog);
+		Brain	&operator=(const Brain &brain);
 
-		void	makeSound() const;
-		Brain	*getBrain() const;
-		Brain	*getBrain();
+		std::string	getIdea(size_t index) const;
+		bool		setIdea(std::string idea);
 };
 
 #endif

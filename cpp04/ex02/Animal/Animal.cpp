@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Animal.hpp"
 
-Dog::~Dog() { delete _brain; std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
-Dog::Dog() : Animal(DOG_TYPE), _brain(new Brain()) { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
-Dog::Dog(const Dog &dog) : Animal(dog.getType()), _brain(new Brain(*dog.getBrain())) { std::cout << DOG_PRINT << "\t : " << DOG_COPY << std::endl; *this = dog;}
+Animal::~Animal() { std::cout << ANIMAL_PRINT << "\t : " << "type:[ " << _type << " ], " << ANIMAL_DESTROY << std::endl;}
+Animal::Animal() : _type(ANIMAL_TYPE) { std::cout << ANIMAL_PRINT << "\t : " << "type:[ " << _type << " ], " << ANIMAL_DEFAULT << std::endl;}
+Animal::Animal(std::string type) : _type(type) { std::cout << ANIMAL_PRINT << "\t : " << "type:[ " << _type << " ], " << ANIMAL_DEFAULT << std::endl;}
+Animal::Animal(const Animal &animal) : _type(animal.getType()) { std::cout << ANIMAL_PRINT << "\t : " << "type:[ " << _type << " ], " << ANIMAL_DEFAULT << std::endl;}
 
-Dog		&Dog::operator=(const Dog &dog) { if (this == &dog) return (*this); _brain = dog._brain; return (*this);}
+Animal		&Animal::operator=(const Animal &animal) { if (this == &animal) return (*this); _type = animal.getType(); return (*this);}
 
-void	Dog::makeSound() const { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ]," << " make : [ " << DOG_SOUND  << " ] " << std::endl;}
-Brain	*Dog::getBrain() const { return (_brain);}
-Brain	*Dog::getBrain() { return (_brain);}
+std::string	Animal::getType() const { return (_type);}

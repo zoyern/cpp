@@ -11,35 +11,33 @@
 /* ************************************************************************** */
 
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 # include <iostream>
-# include "../Animal/Animal.hpp"
-# include "../Brain/Brain.hpp"
 
-# ifndef DOG
-#  define DOG_PRINT "Dog"
-#  define DOG_TYPE "Dog"
-#  define DOG_SOUND "Woaf Woaf !"
-#  define DOG_DEFAULT "created !"
-#  define DOG_COPY "copy !"
-#  define DOG_DESTROY "killed !"
+# ifndef ANIMAL
+#  define ANIMAL_PRINT "Animal"
+#  define ANIMAL_TYPE "Animal"
+#  define ANIMAL_SOUND "Undefined noises !"
+#  define ANIMAL_DEFAULT "created !"
+#  define ANIMAL_DESTROY "killed !"
 # endif
 
-class Dog : public Animal{
-	private:
-		Brain	*_brain;
+class Animal {
+	protected:
+		std::string	_type;
+
+		Animal();
+		Animal(std::string type);
+    	Animal(const Animal &animal);
 	public:
-		~Dog();
-		Dog();
-		Dog(const Dog &dog);
+		virtual ~Animal();
 
-		Dog		&operator=(const Dog &dog);
+		Animal			&operator=(const Animal &animal);
 
-		void	makeSound() const;
-		Brain	*getBrain() const;
-		Brain	*getBrain();
+		std::string		getType() const;
+		virtual void	makeSound() const = 0;
 };
 
 #endif

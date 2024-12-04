@@ -11,31 +11,27 @@
 /* ************************************************************************** */
 
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
 # include <iostream>
-# include "../Animal/Animal.hpp"
-# include "../Brain/Brain.hpp"
+# include "../AMateria/AMateria.hpp"
 
-# ifndef DOG
-#  define DOG_PRINT "Dog"
-#  define DOG_TYPE "Dog"
-#  define DOG_SOUND "Woaf Woaf !"
-#  define DOG_DEFAULT "created !"
-#  define DOG_COPY "copy !"
-#  define DOG_DESTROY "killed !"
+# ifndef CURE
+#  define CURE_PRINT "Cure"
+#  define CURE_ATTACK "* heals"
+#  define CURE_END "’s wounds *"
 # endif
 
-class Dog : public Animal{
+class Cat : public Animal{
 	private:
 		Brain	*_brain;
 	public:
-		~Dog();
-		Dog();
-		Dog(const Dog &dog);
+		~Cat();
+		Cat();
+		Cat(const Cat &cat);
 
-		Dog		&operator=(const Dog &dog);
+		Cat		&operator=(const Cat &cat);
 
 		void	makeSound() const;
 		Brain	*getBrain() const;
