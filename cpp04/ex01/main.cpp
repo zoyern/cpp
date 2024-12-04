@@ -12,52 +12,116 @@
 
 #include "Dog/Dog.hpp"
 #include "Cat/Cat.hpp"
-#include "WrongCat/WrongCat.hpp"
 
 
 int main(void) {
-  std::cout << "--- Project pdf: derived class overrides base class method ---"
-            << std::endl
+	std::cout << std::endl << "--- PDF: ---" << std::endl
             << std::endl;
-  const Animal *meta = new Animal();
-  const Animal *i = new Cat();
-  const Animal *j = new Dog();
-  std::cout << i->getType() << " " << std::endl;
-  std::cout << j->getType() << " " << std::endl;
-  i->makeSound(); 
-  j->makeSound();
-  meta->makeSound();
-  delete meta;
-  delete i;
-  delete j;
+  Dog *dog = new Dog();
+  Cat *cat = new Cat();
 
-  std::cout << std::endl << "--- Objects are created as derived class ---"
-            << std::endl
+  delete dog;
+  delete cat;
+
+  std::cout << std::endl << "--- Array of animals ---" << std::endl
             << std::endl;
-  const Animal *meta2 = new Animal();
-  const Cat *i2 = new Cat();
-  const Dog *j2 = new Dog();
-  std::cout << i2->getType() << " " << std::endl;
-  std::cout << j2->getType() << " " << std::endl;
-  i2->makeSound();
-  j2->makeSound();
-  meta2->makeSound();
-  delete meta2;
-  delete i2;
-  delete j2;
 
-  std::cout << std::endl << "--- WrongAnimal Test: derived class doesn't override base "
-               "class function ---"
-            << std::endl
+  Animal *array_animals[10];
+  for (int i = 0; i < 10; i++) {
+    if (i % 2)
+      array_animals[i] = new Dog();
+    else
+      array_animals[i] = new Cat();
+  }
+  std::cout << "------------" << std::endl;
+
+  for (int i = 0; i < 10; i++) array_animals[i]->makeSound();
+
+  std::cout << "------------" << std::endl;
+
+  for (int i = 0; i < 10; i++) delete array_animals[i];
+
+  std::cout << std::endl << "--- Test for deep copy ---" << std::endl
             << std::endl;
-  const WrongAnimal *meta3 = new WrongAnimal();
-  const WrongAnimal *i3 = new WrongCat();
-  std::cout << meta3->getType() << " " << std::endl;
-  std::cout << i3->getType() << " " << std::endl;
-  meta3->makeSound();
-  i3->makeSound(); 
-  delete meta3;
-  delete i3;
+  Cat *cat2 = new Cat();
+  cat2->getBrain().setIdea("Hmm... fish!");
+  cat2->getBrain().setIdea("I wanna play...");
+  for (size_t i = 0; i < BRAIN_IDEAS; i++)
+  {
+	std::string idea = cat2->getBrain().getIdea(i);
+	if (idea == "")
+		break;
+	std::cout << "idea : " << i << " | " << idea << std::endl;
+  }
+	std::cout << "-------" << std::endl;
 
+  std::cout << std::endl << "--- Making a deep copy ---" << std::endl
+            << std::endl;
+
+  Cat *cat3 = new Cat(*cat2);
+  cat2->getBrain().setIdea("Gotta sleep now...");
+  std::cout << std::endl;
+  for (size_t i = 0; i < BRAIN_IDEAS; i++)
+  {
+	std::string idea = cat2->getBrain().getIdea(i);
+	if (idea == "")
+		break;
+	std::cout << "idea : " << i << " | " << idea << std::endl;
+  }
+std::cout << "-------" << std::endl;
+  std::cout << std::endl;
+    for (size_t i = 0; i < BRAIN_IDEAS; i++)
+  {
+	std::string idea = cat3->getBrain().getIdea(i);
+	if (idea == "")
+		break;
+	std::cout << "idea : " << i << " | " << idea << std::endl;
+  }
+	std::cout << "-------" << std::endl;
+  std::cout << std::endl;
+
+  std::cout << std::endl << "--- Copy assignment operator ---" << std::endl
+            << std::endl;
+
+	std::cout << "New Cat" << std::endl << std::endl;
+  Cat *cat4 = new Cat();
+	std::cout << std::endl <<"Assigning cat 3 to cat 4" << std::endl << std::endl;
+  *cat4 = *cat3;
+	std::cout << std::endl ;
+    for (size_t i = 0; i < BRAIN_IDEAS; i++)
+  {
+	std::string idea = cat4->getBrain().getIdea(i);
+	if (idea == "")
+		break;
+	std::cout << "idea : " << i << " | " << idea << std::endl;
+  }
+	std::cout << "-------" << std::endl;
+  std::cout << std::endl;
+  cat3->getBrain().setIdea("No sleeping now!!!");
+    for (size_t i = 0; i < BRAIN_IDEAS; i++)
+  {
+	std::string idea = cat3->getBrain().getIdea(i);
+	if (idea == "")
+		break;
+	std::cout << "idea : " << i << " | " << idea << std::endl;
+  }
+	std::cout << "-------" << std::endl;
+  std::cout << std::endl;
+    for (size_t i = 0; i < BRAIN_IDEAS; i++)
+  {
+	std::string idea = cat4->getBrain().getIdea(i);
+	if (idea == "")
+		break;
+	std::cout << "idea : " << i << " | " << idea << std::endl;
+  }
+	std::cout << "-------" << std::endl;
+  std::cout << std::endl;
+
+	std::cout << std::endl << "--- Destruction ---" << std::endl
+            << std::endl;
+
+  delete cat2;
+  delete cat3;
+  delete cat4;
   return 0;
 }

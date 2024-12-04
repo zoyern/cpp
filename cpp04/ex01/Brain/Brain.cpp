@@ -10,9 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Brain.hpp"
 
-WrongCat::~WrongCat() { std::cout << WRONGCAT_PRINT << " :\t" << "type:[ " << _type << " ], " << WRONGCAT_DESTROY << std::endl;}
-WrongCat::WrongCat() : WrongAnimal(WRONGCAT_TYPE) { std::cout << WRONGCAT_PRINT << " :\t" << "type:[ " << _type << " ], " << WRONGCAT_DEFAULT << std::endl;}
+//for (size_t i = 0; i < BRAIN_IDEAS; i++) _ideas[i] = "";
 
-void	WrongCat::makeSound() const { std::cout << WRONGCAT_PRINT << " :\t" << "type:[ " << _type << " ]," << " make : [ " << WRONGCAT_SOUND  << " ] " << std::endl;}
+Brain::~Brain() { std::cout << BRAIN_PRINT << "\t : " << BRAIN_DESTROY << std::endl;}
+Brain::Brain() { std::cout << BRAIN_PRINT << "\t : " << BRAIN_DEFAULT << std::endl;}
+Brain::Brain(const Brain &brain) { std::cout << BRAIN_PRINT << "\t : " << BRAIN_COPY << std::endl; *this = brain;}
+
+Brain			&Brain::operator=(const Brain &brain) { if (this == &brain) return (*this); for (size_t i = 0; i < BRAIN_IDEAS; i++) _ideas[i] = brain.getIdea(i); return (*this);}
+
+std::string	Brain::getIdea(size_t index) const { if (index >= BRAIN_IDEAS) return (""); return (_ideas[index]);}
+bool		Brain::setIdea(std::string idea) { for (size_t i = 0; i < BRAIN_IDEAS; i++) if (_ideas[i] == "") return (_ideas[i] = idea, true); return (false);}

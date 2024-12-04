@@ -11,29 +11,31 @@
 /* ************************************************************************** */
 
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include <iostream>
 
-# ifndef WRONGANIMAL
-#  define WRONGANIMAL_PRINT "WrongAnimal"
-#  define WRONGANIMAL_TYPE "WrongAnimal"
-#  define WRONGANIMAL_SOUND "Undefined wrong noises !"
-#  define WRONGANIMAL_DEFAULT "created !"
-#  define WRONGANIMAL_DESTROY "killed !"
+# ifndef BRAIN
+#  define BRAIN_IDEAS 100
+#  define BRAIN_PRINT "Brain"
+#  define BRAIN_DEFAULT "created !"
+#  define BRAIN_COPY "copy !"
+#  define BRAIN_DESTROY "destroyed !"
 # endif
 
-class WrongAnimal {
-	protected:
-		std::string	_type;
+class Brain{
+	private:
+		std::string	_ideas[BRAIN_IDEAS];
 	public:
-		virtual ~WrongAnimal();
-		WrongAnimal();
-		WrongAnimal(std::string type);
-		
-		std::string		getType() const;
-		virtual void	makeSound() const;
+		~Brain();
+		Brain();
+		Brain(const Brain &brain);
+
+		Brain	&operator=(const Brain &brain);
+
+		std::string	getIdea(size_t index) const;
+		bool		setIdea(std::string idea);
 };
 
 #endif

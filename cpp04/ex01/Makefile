@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/12/03 19:35:27 by marvin           ###   ########.fr        #
+#    Updated: 2024/12/03 22:38:35 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC          = g++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = main.cpp Animal/Animal.cpp WrongAnimal/WrongAnimal.cpp Cat/Cat.cpp Dog/Dog.cpp WrongCat/WrongCat.cpp
+SRC         = main.cpp Animal/Animal.cpp Cat/Cat.cpp Dog/Dog.cpp Brain/Brain.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 

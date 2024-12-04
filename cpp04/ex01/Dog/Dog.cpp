@@ -12,7 +12,11 @@
 
 #include "Dog.hpp"
 
-Dog::~Dog() { std::cout << DOG_PRINT << " :\t\t" << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
-Dog::Dog() : Animal(DOG_TYPE) { std::cout << DOG_PRINT << " :\t\t" << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
+Dog::~Dog() { delete (_brain); std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
+Dog::Dog() : Animal(DOG_TYPE), _brain(new Brain()) { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
+Dog::Dog(const Dog &dog) : Animal(DOG_TYPE), _brain(new Brain(dog.getBrain())) { std::cout << DOG_PRINT << "\t : " << DOG_COPY << std::endl; *this = dog;}
 
-void	Dog::makeSound() const { std::cout << DOG_PRINT << " :\t\t" << "type:[ " << _type << " ]," << " make : [ " << DOG_SOUND  << " ] " << std::endl;}
+Dog		&Dog::operator=(const Dog &dog) { if (this == &dog) return (*this); _brain = dog._brain; return (*this);}
+
+void	Dog::makeSound() const { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ]," << " make : [ " << DOG_SOUND  << " ] " << std::endl;}
+Brain	Dog::getBrain() const { return (*_brain);}

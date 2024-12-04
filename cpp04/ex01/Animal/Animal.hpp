@@ -31,7 +31,10 @@ class Animal {
 		virtual ~Animal();
 		Animal();
 		Animal(std::string type);
-		
+    	Animal(const Animal &animal);
+
+		Animal			&operator=(const Animal &animal);
+
 		std::string		getType() const;
 		virtual void	makeSound() const;
 };
