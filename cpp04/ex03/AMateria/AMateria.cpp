@@ -10,15 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#include "AMateria.hpp"
 
-//for (size_t i = 0; i < BRAIN_IDEAS; i++) _ideas[i] = "";
+AMateria::~AMateria() {}
+AMateria::AMateria(std::string type) : _type(type) {}
+AMateria::AMateria(const AMateria &materia) : _type(materia.getType()) {}
 
-Brain::~Brain() { std::cout << BRAIN_PRINT << "\t : " << BRAIN_DESTROY << std::endl;}
-Brain::Brain() { std::cout << BRAIN_PRINT << "\t : " << BRAIN_DEFAULT << std::endl;}
-Brain::Brain(const Brain &brain) { std::cout << BRAIN_PRINT << "\t : " << BRAIN_COPY << std::endl; *this = brain;}
-
-Brain		&Brain::operator=(const Brain &brain) { if (this == &brain) return (*this); for (size_t i = 0; i < BRAIN_IDEAS; i++) _ideas[i] = brain.getIdea(i); return (*this);}
-
-std::string	Brain::getIdea(size_t index) const { if (index >= BRAIN_IDEAS) return (""); return (_ideas[index]);}
-bool		Brain::setIdea(std::string idea)  { for (size_t i = 0; i < BRAIN_IDEAS; i++) if (_ideas[i] == "") return (_ideas[i] = idea, true); return (false);}
+std::string const	&AMateria::getType() const { return (_type);}

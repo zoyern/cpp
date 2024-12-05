@@ -10,14 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "MateriaSource.hpp"
 
-Dog::~Dog() { delete _brain; std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
-Dog::Dog() : Animal(DOG_TYPE), _brain(new Brain()) { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
-Dog::Dog(const Dog &dog) : Animal(dog.getType()), _brain(new Brain(*dog.getBrain())) { std::cout << DOG_PRINT << "\t : " << DOG_COPY << std::endl; *this = dog;}
+MateriaSource::~MateriaSource() { for (size_t i = 0; i < MATERIASOURCE_INVENTORY; ++i) if (_inventory[i]) delete _inventory[i];}
+MateriaSource::MateriaSource() { for (size_t i = 0; i < MATERIASOURCE_INVENTORY; ++i) _inventory[i] = NULL;}
 
-Dog		&Dog::operator=(const Dog &dog) { if (this == &dog) return (*this); _brain = dog._brain; return (*this);}
-
-void	Dog::makeSound() const { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ]," << " make : [ " << DOG_SOUND  << " ] " << std::endl;}
-Brain	*Dog::getBrain() const { return (_brain);}
-Brain	*Dog::getBrain() { return (_brain);}
+void		MateriaSource::learnMateria(AMateria *materia) { if (!materia) return ; for (size_t i = 0; i < MATERIASOURCE_INVENTORY; i++) if (!_inventory[i]) return ((void)(_inventory[i] = materia));};
+AMateria	*MateriaSource::createMateria(std::string const &type) { for (size_t i = 0; i < MATERIASOURCE_INVENTORY; i++) if (_inventory[i] && _inventory[i]->getType() == type) return (_inventory[i]->clone()); return (0);};

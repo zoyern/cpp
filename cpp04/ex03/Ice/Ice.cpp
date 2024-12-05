@@ -10,14 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Ice.hpp"
 
-Cat::~Cat() { delete _brain; std::cout << CAT_PRINT << "\t : " << "type:[ " << _type << " ], " << CAT_DESTROY << std::endl;}
-Cat::Cat() : Animal(CAT_TYPE), _brain(new Brain()) { std::cout << CAT_PRINT << "\t : " << "type:[ " << _type << " ], " << CAT_DEFAULT << std::endl;}
-Cat::Cat(const Cat &cat) : Animal(cat.getType()), _brain(new Brain(*cat.getBrain())) { std::cout << CAT_PRINT << "\t : " << CAT_COPY << std::endl; *this = cat;}
+Ice::Ice() : AMateria(ICE_TYPE) {}
 
-Cat		&Cat::operator=(const Cat &cat) { if (this == &cat) return (*this); *_brain = *cat._brain; return (*this);}
-
-void	Cat::makeSound() const { std::cout << CAT_PRINT << "\t : " << "type:[ " << _type << " ]," << " make : [ " << CAT_SOUND  << " ] " << std::endl;}
-Brain	*Cat::getBrain() const { return (_brain);}
-Brain	*Cat::getBrain() { return (_brain);}
+void		Ice::use(ICharacter &character) {std::cout << ICE_PRINT << "\t : " << ICE_ATTACK << " name:[ " << character.getName() << " ], " << ICE_END << std::endl;};
+AMateria	*Ice::clone() const { return (new Ice());};

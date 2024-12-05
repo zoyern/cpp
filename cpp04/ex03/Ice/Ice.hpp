@@ -11,31 +11,25 @@
 /* ************************************************************************** */
 
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
 # include <iostream>
 # include "../AMateria/AMateria.hpp"
+# include "../Character/ICharacter.hpp"
 
-# ifndef CURE
-#  define CURE_PRINT "Cure"
-#  define CURE_ATTACK "* heals"
-#  define CURE_END "’s wounds *"
+# ifndef ICE
+#  define ICE_PRINT "Ice"
+#  define ICE_TYPE "ice"
+#  define ICE_ATTACK "* shoots an ice bolt at "
+#  define ICE_END " *"
 # endif
 
-class Cat : public Animal{
-	private:
-		Brain	*_brain;
+class Ice : virtual public AMateria{
 	public:
-		~Cat();
-		Cat();
-		Cat(const Cat &cat);
-
-		Cat		&operator=(const Cat &cat);
-
-		void	makeSound() const;
-		Brain	*getBrain() const;
-		Brain	*getBrain();
+		Ice();
+		void		use(ICharacter &character);
+		AMateria	*clone() const;
 };
 
 #endif

@@ -11,31 +11,19 @@
 /* ************************************************************************** */
 
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
 
 # include <iostream>
+# include "../AMateria/AMateria.hpp"
 
-# ifndef BRAIN
-#  define BRAIN_IDEAS 100
-#  define BRAIN_PRINT "Brain"
-#  define BRAIN_DEFAULT "created !"
-#  define BRAIN_COPY "copy !"
-#  define BRAIN_DESTROY "destroyed !"
-# endif
-
-class Brain{
-	private:
-		std::string	_ideas[BRAIN_IDEAS];
+class ICharacter{
 	public:
-		~Brain();
-		Brain();
-		Brain(const Brain &brain);
-
-		Brain	&operator=(const Brain &brain);
-
-		std::string	getIdea(size_t index) const;
-		bool		setIdea(std::string idea);
+		virtual ~ICharacter() {}
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
 };
 
 #endif

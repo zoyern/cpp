@@ -10,155 +10,85 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color.hpp"
-#include "Cat/Cat.hpp"
-#include "Cat/Cat.hpp"
+#include "Character/Character.hpp"
+#include "MateriaSource/MateriaSource.hpp"
+#include "Ice/Ice.hpp"
+#include "Cure/Cure.hpp"
 
-
-inline void	printHeader(const std::string &message)
+int main()
 {
-	std::cout << BLUE "########## " << message << " ##########" RST << std::endl;
-}
-
-inline void	printSeperate(const std::string &message)
-{
-	std::cout << GRY1 << "--- " << message << " ---" RST << std::endl;
-}
-
-inline void	printSub(const std::string &message)
-{
-	std::cout << GRNN << ">> " << message << RST << std::endl;
-}
-
-int	mainSubject(void)
-{
-	IMateriaSource	*src = new MateriaSource();
+	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-
-	ICharacter		*me = new Character("me");
-
-	AMateria		*tmp;
+	ICharacter* me = new Character("me");
+	AMateria	*tmp;
+	AMateria	*tmp1;
+	AMateria	*tmp2;
+	AMateria	*tmp3;
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	tmp = src->createMateria("cure");
+	tmp1 = src->createMateria("cure");
+	me->equip(tmp1);
+	tmp = src->createMateria("fire");
 	me->equip(tmp);
-
-	ICharacter		*bob = new Character("bob");
-
+	std::cout << std::endl;
+	std::cout << "USE ON A NEW CHARACTER:" << std::endl;
+	std::cout << "-----------------------" << std::endl;
+	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
-
-	delete (bob);
-	delete (me);
-	delete (src);
-	return (0);
-}
-
-int	mainCustom(void)
-{
-	printSeperate("Création de 2 Character");
-	printSub("John et Bill");
-	ICharacter	*john = new Character("John");
-	ICharacter	*bill = new Character("Bill");
+	me->use(2, *bob);
+	me->use(-4, *bob);
+	me->use(18, *bob);
+	Character	*charles = new Character("Charles");
+	tmp2 = src->createMateria("cure");
+	charles->equip(tmp2);
+	tmp3 = src->createMateria("ice");
+	charles->equip(tmp3);
+	tmp = src->createMateria("earth");
+	charles->equip(tmp);
+	Character	*pomme = new Character("pomme");
 	std::cout << std::endl;
-
-	printSeperate("Création de 1 IMateriaSource");
-	printSub("source");
-	IMateriaSource	*source = new MateriaSource();
+	std::cout << "DEEP COPY VS SOURCE:" << std::endl;
+	std::cout << "-----------------------" << std::endl;
+	charles->unequip(0);
+	pomme->unequip(1);
+	tmp = src->createMateria("cure");
+	pomme->equip(tmp);
+	tmp = src->createMateria("ice");
+	pomme->equip(tmp);
+	tmp = src->createMateria("ice");
+	pomme->equip(tmp);
+	tmp = src->createMateria("ice");
+	pomme->equip(tmp);
+	tmp = src->createMateria("ice");
+	pomme->equip(tmp);
+	tmp = src->createMateria("ice");
+	pomme->equip(tmp);
+	charles->use(0, *bob);
+	charles->use(1, *bob);
+	charles->use(2, *bob);
+	charles->use(3, *bob);
+	std::cout << "-----------------------" << std::endl;
+	pomme->use(0, *charles);
+	pomme->use(1, *charles);
+	pomme->use(2, *charles);
+	pomme->use(3, *charles);
 	std::cout << std::endl;
+	std::cout << "UNEQUIP:" << std::endl;
+	std::cout << "-----------------------" << std::endl;
+	me->unequip(-1);
+	me->unequip(18);
+	me->unequip(3);
+	me->use(1, *charles);
+	me->unequip(1);
+	me->use(1, *charles);
 
-	printSeperate("Création de 2 Materias");
-	printSub("Ice et Cure");
-	Ice		*ice = new Ice();
-	Cure	*cure = new Cure();
-	std::cout << std::endl;
-
-	printSeperate("Ajout des Materia a la source");
-	printSub("Ice et Cure");
-	source->learnMateria(ice);
-	source->learnMateria(cure);
-	std::cout << std::endl;
-
-	printSeperate("John apprends les 2 Materias");
-	printSub("Cure [index 0] et Ice [index 1]");
-	john->equip(source->createMateria("cure"));
-	john->equip(source->createMateria("ice"));
-	std::cout << std::endl;
-
-	printSeperate("Bill apprends les 2 Materias");
-	printSub("Cure [index 0] et Ice [index 1]");
-	bill->equip(source->createMateria("cure"));
-	bill->equip(source->createMateria("ice"));
-	std::cout << std::endl;
-
-	printSeperate("John utilise les Materia a Index 1 sur Bill");
-	printSub("Ice [index 1] normalement");
-	john->use(1, *bill);
-	std::cout << std::endl;
-
-	printSeperate("John utilise les Materia a Index 0 sur lui-même");
-	printSub("Cure [index 0] normalement");
-	john->use(0, *john);
-	std::cout << std::endl;
-
-	printSeperate("Bill utilise les Materia a Index 1 sur John");
-	printSub("Ice [index 1] normalement");
-	bill->use(1, *john);
-	std::cout << std::endl;
-
-	printSeperate("Bill utilise les Materia a Index 0 sur lui-même");
-	printSub("Cure [index 0] normalement");
-	bill->use(0, *bill);
-	std::cout << std::endl;
-
-	printSeperate("Tentative de use() a mauvais index");
-	printSub("[index 3]");
-	john->use(3, *bill);
-	std::cout << std::endl;
-
-	printSeperate("unequip() John");
-	printSub("[index 1]");
-	AMateria *tmp0 = john->getMateria(1);
-	john->unequip(1);
-	std::cout << std::endl;
-
-	printSeperate("Tentative de unequip() a index deja vide");
-	printSub("[index 1] - John");
-	john->unequip(1);
-	std::cout << std::endl;
-	
-	printSeperate("unequip() Bill");
-	printSub("[index 0]");
-	AMateria *tmp1 = bill->getMateria(0);
-	bill->unequip(0);
-	std::cout << std::endl;
-
-	printSeperate("Tentative de unequip() a mauvais index");
-	printSub("[index 5] - Bill");
-	bill->unequip(5);
-	std::cout << std::endl;
-
-	delete (tmp0);
-	delete (tmp1);
-	delete (source);
-	delete (bill);
-	delete (john);
-
-	return (0);
-}
-
-int	main(void)
-{
-	std::cout << CLRALL;
-
-	printHeader("Main Subject");
-	mainSubject();
-
-	std::cout << std::endl << std::endl;
-
-	printHeader("Main Custom");
-	mainCustom();
-
+	delete bob;
+	delete me;
+	delete src;
+	delete charles;
+	delete pomme;
+	std::cout << "-----------------------" << std::endl;
 	return (0);
 }

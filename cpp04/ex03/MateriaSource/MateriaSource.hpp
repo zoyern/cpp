@@ -11,31 +11,24 @@
 /* ************************************************************************** */
 
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
 # include <iostream>
-# include "../AMateria/AMateria.hpp"
+# include "IMateriaSource.hpp"
 
-# ifndef CURE
-#  define CURE_PRINT "Cure"
-#  define CURE_ATTACK "* heals"
-#  define CURE_END "’s wounds *"
+# ifndef MATERIASOURCE
+#  define MATERIASOURCE_INVENTORY 4
 # endif
 
-class Cat : public Animal{
+class MateriaSource : virtual public IMateriaSource {
 	private:
-		Brain	*_brain;
+		AMateria	*_inventory[MATERIASOURCE_INVENTORY];
 	public:
-		~Cat();
-		Cat();
-		Cat(const Cat &cat);
-
-		Cat		&operator=(const Cat &cat);
-
-		void	makeSound() const;
-		Brain	*getBrain() const;
-		Brain	*getBrain();
+		~MateriaSource();
+		MateriaSource();
+		void		learnMateria(AMateria *materia);
+		AMateria	*createMateria(std::string const &type);
 };
 
 #endif

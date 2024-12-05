@@ -11,33 +11,17 @@
 /* ************************************************************************** */
 
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
 # include <iostream>
+# include "../AMateria/AMateria.hpp"
 
-# ifndef ANIMAL
-#  define ANIMAL_PRINT "Animal"
-#  define ANIMAL_TYPE "Animal"
-#  define ANIMAL_SOUND "Undefined noises !"
-#  define ANIMAL_DEFAULT "created !"
-#  define ANIMAL_DESTROY "killed !"
-# endif
-
-class Animal {
-	protected:
-		std::string	_type;
-
-		Animal();
-		Animal(std::string type);
-    	Animal(const Animal &animal);
+class IMateriaSource{
 	public:
-		virtual ~Animal();
-
-		Animal			&operator=(const Animal &animal);
-
-		std::string		getType() const;
-		virtual void	makeSound() const = 0;
+		virtual ~IMateriaSource() {}
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria(std::string const &type) = 0;
 };
 
 #endif
