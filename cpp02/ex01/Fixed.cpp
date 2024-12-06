@@ -20,7 +20,12 @@ Fixed::Fixed(const Fixed &fixed) {std::cout << PRINT_COPY << std::endl; *this = 
 Fixed::Fixed(const int value): _value(value << _bits) { std::cout << PRINT_INT << std::endl;}
 Fixed::Fixed(const float value) : _value(roundf(value * (1 << _bits))) { std::cout << PRINT_FLOAT << std::endl;}
 
-Fixed	&Fixed::operator=(const Fixed &fixed) { if (this == &fixed) return (*this); setRawBits(fixed.getRawBits()); std::cout << PRINT_ASSIGNEMENT << std::endl; return (*this);}
+Fixed	&Fixed::operator=(const Fixed &fixed) {
+	if (this == &fixed) return (*this);
+	setRawBits(fixed.getRawBits());
+	std::cout << PRINT_ASSIGNEMENT << std::endl;
+	return (*this);
+}
 std::ostream&	operator<<(std::ostream &out, const Fixed& fixed) { return (out << fixed.toFloat());}
 
 int		Fixed::getRawBits() const { return (_value);}
