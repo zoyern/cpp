@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: almounib <almounib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:06:56 by almounib          #+#    #+#             */
-/*   Updated: 2024/12/02 13:18:54 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/06 18:32:22 by almounib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "all.hpp"
+# include "Contact/Contact.hpp"
+# include "PhoneBook/PhoneBook.hpp"
 
 int	main()
 {
