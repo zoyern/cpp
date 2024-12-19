@@ -38,7 +38,9 @@ class Fixed {
 		Fixed(const Fixed &fixed);
 		Fixed(const int value);
 		Fixed(const float value);
+
 		Fixed	&operator=(const Fixed &fixed);
+
 		int		getRawBits() const;
 		void	setRawBits(int const raw);
 		float	toFloat() const;

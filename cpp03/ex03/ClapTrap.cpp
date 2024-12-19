@@ -15,6 +15,15 @@
 ClapTrap::~ClapTrap() { std::cout << CLAPTRAP_PRINT << " :\t" << _name << " : " << PRINT_DESTROY << std::endl;}
 ClapTrap::ClapTrap() : _name("Unnamed ClapTrap"), _health(CLAPTRAP_HEALTH), _energy(CLAPTRAP_ENERGY), _damage(CLAPTRAP_DAMAGE) { std::cout <<  CLAPTRAP_PRINT << " :\t" << _name << " : " << PRINT_DEFAULT << std::endl;}
 ClapTrap::ClapTrap(std::string name) : _name(name), _health(CLAPTRAP_HEALTH), _energy(CLAPTRAP_ENERGY), _damage(CLAPTRAP_DAMAGE) { std::cout <<  CLAPTRAP_PRINT << " :\t" << _name << " : "  << PRINT_DEFAULT << std::endl;}
+ClapTrap::ClapTrap(const ClapTrap &cpy) { *this = cpy;}
+
+ClapTrap	&ClapTrap::operator=(const ClapTrap &cpy) { if (this == &cpy) return (*this); 
+	_name = cpy._name;
+	_health = cpy._health;
+	_energy = cpy._energy;
+	_damage = cpy._damage;
+	return (*this);
+}
 
 void	ClapTrap::attack(const std::string& target) { 
 	if (_energy < 1 || _health < 1)
