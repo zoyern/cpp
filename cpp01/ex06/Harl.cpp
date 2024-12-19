@@ -26,10 +26,22 @@ void	Harl::warning() { std::string levels[] = LEVELS; std::string msg[] = MSG;
 void	Harl::error() { std::string levels[] = LEVELS; std::string msg[] = MSG;
 			std::cout << "[ " << levels[3] << " ]" << std::endl << msg[3] << std::endl;
 }
-void Harl::complain(std::string level) { std::string levels[] = LEVELS;
-    void (Harl::*functions[SIZE])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    bool flag = false;
-    for (int i = 0; i < SIZE; i++)
-        if (levels[i] == level || flag) { (this->*functions[i])(); std::cout << std::endl; flag = true; }
-    if (!flag) std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+void	Harl::complain(std::string level) {
+	int	lvl = getLevel(level) - 1;
+	do {
+		lvl++;
+		switch (lvl){
+			case 0:	debug(); break;
+			case 1:	info(); break;
+			case 2: warning(); break;
+			case 3: error(); break;
+			default:
+				std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		}
+	} while (lvl < SIZE - 1 && lvl != -1);
+}
+int	Harl::getLevel(std::string level) { std::string levels[] = LEVELS;
+	for (int i = 0; i < SIZE; i++)
+        if (levels[i] == level) return (i);
+	return (-1);
 }
