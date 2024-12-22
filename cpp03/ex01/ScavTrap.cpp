@@ -15,7 +15,7 @@
 ScavTrap::~ScavTrap() { std::cout <<  SCAVTRAP_PRINT << " :\t" << _name << " : " << PRINT_DESTROY << std::endl;}
 ScavTrap::ScavTrap() : ClapTrap("Unnamed ScavTrap"), _guardGate(false) { _health = SCAVTRAP_HEALTH, _energy = SCAVTRAP_ENERGY, _damage = SCAVTRAP_DAMAGE; std::cout <<  SCAVTRAP_PRINT << " :\t" << _name << " : " << PRINT_DEFAULT << std::endl;}
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _guardGate(false) { _health = SCAVTRAP_HEALTH, _energy = SCAVTRAP_ENERGY, _damage = SCAVTRAP_DAMAGE; std::cout <<  SCAVTRAP_PRINT << " :\t" << _name << " : " << PRINT_DEFAULT << std::endl;}
-ScavTrap::ScavTrap(const ScavTrap &cpy) : ClapTrap(cpy._name), _guardGate(false) { *this = cpy;}
+ScavTrap::ScavTrap(const ScavTrap &cpy) : ClapTrap(cpy), _guardGate(false) { *this = cpy;}
 
 ScavTrap	&ScavTrap::operator=(const ScavTrap &cpy) { if (this == &cpy) return (*this); 
 	ClapTrap::operator=(cpy);

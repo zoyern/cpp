@@ -14,7 +14,7 @@
 
 Dog::~Dog() { delete _brain; std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DESTROY << std::endl;}
 Dog::Dog() : Animal(DOG_TYPE), _brain(new Brain()) { std::cout << DOG_PRINT << "\t : " << "type:[ " << _type << " ], " << DOG_DEFAULT << std::endl;}
-Dog::Dog(const Dog &dog) : Animal(dog.getType()), _brain(new Brain(*dog.getBrain())) { std::cout << DOG_PRINT << "\t : " << DOG_COPY << std::endl; *this = dog;}
+Dog::Dog(const Dog &dog) : Animal(dog._type), _brain(new Brain(*dog._brain)) { std::cout << DOG_PRINT << "\t : " << DOG_COPY << std::endl; *this = dog;}
 
 Dog		&Dog::operator=(const Dog &dog) { if (this == &dog) return (*this); _brain = dog._brain; return (*this);}
 

@@ -27,7 +27,12 @@
 
 class Ice : virtual public AMateria{
 	public:
+		~Ice();
 		Ice();
+		Ice(const Ice &cpy);
+
+		Ice			&operator=(const Ice &cpy);
+
 		void		use(ICharacter &character);
 		AMateria	*clone() const;
 };

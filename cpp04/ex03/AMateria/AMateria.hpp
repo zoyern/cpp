@@ -21,10 +21,14 @@ class ICharacter;
 class AMateria {
 	protected:
 		std::string	_type;
+
+		AMateria(std::string type);
 	public:
 		virtual ~AMateria();
-		AMateria(std::string type);
-		AMateria(const AMateria &materia);
+		AMateria(const AMateria &cpy);
+
+		AMateria			&operator=(const AMateria &cpy);
+
 		std::string const	&getType() const;
 		virtual AMateria	*clone() const = 0;
 		virtual void		use(ICharacter &target) = 0;

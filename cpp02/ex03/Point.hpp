@@ -25,9 +25,10 @@ class Point {
 	public:
 		~Point();
 		Point();
-		Point(const Point &point);
+		Point(const Point &cpy);
 		Point(const float x, const float y);
-		Point	&operator=(const Point &point);
+
+		Point	&operator=(const Point &cpy);
 
 		Fixed	getX() const;
 		Fixed	getY() const;

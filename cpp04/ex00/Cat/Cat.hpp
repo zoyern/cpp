@@ -29,6 +29,9 @@ class Cat : public Animal{
 	public:
 		~Cat();
 		Cat();
+		Cat(const Cat &cpy);
+
+		Cat	&operator=(const Cat &cpy);
 
 		void	makeSound() const;
 };

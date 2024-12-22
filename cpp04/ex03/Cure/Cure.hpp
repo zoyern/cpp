@@ -27,7 +27,12 @@
 
 class Cure : virtual public AMateria{
 	public:
+		~Cure();
 		Cure();
+		Cure(const Cure &cpy);
+
+		Cure		&operator=(const Cure &cpy);
+
 		void		use(ICharacter &character);
 		AMateria	*clone() const;
 };

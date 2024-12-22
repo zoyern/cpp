@@ -31,6 +31,9 @@ class Animal {
 		virtual ~Animal();
 		Animal();
 		Animal(std::string type);
+		Animal(const Animal &cpy);
+
+		Animal	&operator=(const Animal &cpy);
 		
 		std::string		getType() const;
 		virtual void	makeSound() const;

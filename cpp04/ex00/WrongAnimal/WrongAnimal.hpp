@@ -31,8 +31,6 @@ class WrongAnimal : virtual public Animal{
 		~WrongAnimal();
 		WrongAnimal();
 		WrongAnimal(std::string type);
-
-		virtual void	makeSound() const;
 };
 
 #endif

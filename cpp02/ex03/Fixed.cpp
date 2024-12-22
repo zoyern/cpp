@@ -38,9 +38,11 @@ float			Fixed::operator/(const Fixed &fixed) const { return (toFloat() / fixed.t
 
 int				Fixed::getRawBits() const { return (_value);}
 void			Fixed::setRawBits(int const raw) { _value = raw;}
-float			Fixed::toFloat(void) const {return ((float)this->_value / (float)(1 << this->_bits));}
-int				Fixed::toInt(void) const {return (this->_value >> this->_bits);}
+float			Fixed::toFloat(void) const {return ((float)_value / (float)(1 << _bits));}
+int				Fixed::toInt(void) const {return (_value >> _bits);}
 
+Fixed			&Fixed::min(Fixed &n1, Fixed &n2) {return (n1 < n2 ? n1 : n2);}
+Fixed			&Fixed::max(Fixed &n1, Fixed &n2) {return (n1 > n2 ? n1 : n2);}
 Fixed const		&Fixed::min(const Fixed &n1, const Fixed &n2) {return (n1 < n2 ? n1 : n2);}
 Fixed const		&Fixed::max(const Fixed &n1, const Fixed &n2) {return (n1 > n2 ? n1 : n2);}
 

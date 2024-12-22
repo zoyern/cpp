@@ -15,6 +15,9 @@
 FragTrap::~FragTrap() { std::cout <<  FRAGTRAP_PRINT << " :\t" << _name << " : " << PRINT_DESTROY << std::endl;}
 FragTrap::FragTrap() : ClapTrap("Unnamed FragTrap") { _health = FRAGTRAP_HEALTH, _energy = FRAGTRAP_ENERGY, _damage = FRAGTRAP_DAMAGE; std::cout <<  FRAGTRAP_PRINT << " :\t" << _name << " : " << PRINT_DEFAULT << std::endl;}
 FragTrap::FragTrap(std::string name) : ClapTrap(name) { _health = FRAGTRAP_HEALTH, _energy = FRAGTRAP_ENERGY, _damage = FRAGTRAP_DAMAGE; std::cout <<  FRAGTRAP_PRINT << " :\t" << _name << " : " << PRINT_DEFAULT << std::endl;}
+FragTrap::FragTrap(const FragTrap &cpy) : ClapTrap(cpy) { _health = FRAGTRAP_HEALTH, _energy = FRAGTRAP_ENERGY, _damage = FRAGTRAP_DAMAGE; std::cout <<  FRAGTRAP_PRINT << " :\t" << _name << " : " << PRINT_DEFAULT << std::endl;}
+
+FragTrap	&FragTrap::operator=(const FragTrap &cpy) { if (this == &cpy) return (*this); ClapTrap::operator=(cpy); return (*this);}
 
 void	FragTrap::highFivesGuys() {
 	std::string	input;

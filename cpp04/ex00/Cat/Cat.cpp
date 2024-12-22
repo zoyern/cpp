@@ -14,5 +14,8 @@
 
 Cat::~Cat() { std::cout << CAT_PRINT << "\t\t : " << "type:[ " << _type << " ], " << CAT_DESTROY << std::endl;}
 Cat::Cat() : Animal(CAT_TYPE) { std::cout << CAT_PRINT << "\t\t : " << "type:[ " << _type << " ], " << CAT_DEFAULT << std::endl;}
+Cat::Cat(const Cat &cpy) : Animal(cpy) { std::cout << CAT_PRINT << "\t\t : " << "type:[ " << _type << " ], cpy" << CAT_DEFAULT << std::endl;}
+
+Cat		&Cat::operator=(const Cat &cpy) { if (this == &cpy) return (*this); Animal::operator=(cpy); return (*this);}
 
 void	Cat::makeSound() const { std::cout << CAT_PRINT << "\t\t : " << "type:[ " << _type << " ]," << " make : [ " << CAT_SOUND  << " ] " << std::endl;}

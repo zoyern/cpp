@@ -14,7 +14,7 @@
 
 Cat::~Cat() { delete _brain; std::cout << CAT_PRINT << "\t : " << "type:[ " << _type << " ], " << CAT_DESTROY << std::endl;}
 Cat::Cat() : Animal(CAT_TYPE), _brain(new Brain()) { std::cout << CAT_PRINT << "\t : " << "type:[ " << _type << " ], " << CAT_DEFAULT << std::endl;}
-Cat::Cat(const Cat &cat) : Animal(cat.getType()), _brain(new Brain(*cat.getBrain())) { std::cout << CAT_PRINT << "\t : " << CAT_COPY << std::endl; *this = cat;}
+Cat::Cat(const Cat &cat) : Animal(cat._type), _brain(new Brain(*cat._brain)) { std::cout << CAT_PRINT << "\t : " << CAT_COPY << std::endl; *this = cat;}
 
 Cat		&Cat::operator=(const Cat &cat) { if (this == &cat) return (*this); *_brain = *cat._brain; return (*this);}
 

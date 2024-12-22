@@ -18,5 +18,8 @@ bool bsp(Point const a, Point const b, Point const c, Point const p)
 	Fixed c2 = (c.getX() - b.getX()) * (p.getY() - c.getY()) - (c.getY() - b.getY()) * (p.getX() - c.getX());
 	Fixed c3 = (a.getX() - c.getX()) * (p.getY() - a.getY()) - (a.getY() - c.getY()) * (p.getX() - a.getX());
 
-	return ((Fixed(0) < c1 && Fixed(0) < c2 && Fixed(0) < c3) || (c1 < Fixed(0) && c2 < Fixed(0) && c3 < Fixed(0)));
+	bool all_positive = (c1 > Fixed(0)) && (c2 > Fixed(0)) && (c3 > Fixed(0));
+    bool all_negative = (c1 < Fixed(0)) && (c2 < Fixed(0)) && (c3 < Fixed(0));
+
+	return (all_positive || all_negative);
 }

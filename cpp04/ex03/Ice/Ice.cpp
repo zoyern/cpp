@@ -12,7 +12,11 @@
 
 #include "Ice.hpp"
 
+Ice::~Ice() {}
 Ice::Ice() : AMateria(ICE_TYPE) {}
+Ice::Ice(const Ice &cpy) : AMateria(cpy) {}
 
-void		Ice::use(ICharacter &character) {std::cout << ICE_PRINT << "\t : " << ICE_ATTACK << " name:[ " << character.getName() << " ], " << ICE_END << std::endl;};
+Ice			&Ice::operator=(const Ice &cpy) {if (this == &cpy) return (*this); AMateria::operator=(cpy); return (*this);}
+
+void		Ice::use(ICharacter &character) {std::cout << ICE_PRINT << "\t\t : " << ICE_ATTACK << " name:[ " << character.getName() << " ], " << ICE_END << std::endl;};
 AMateria	*Ice::clone() const { return (new Ice());};

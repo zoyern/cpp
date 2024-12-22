@@ -30,7 +30,7 @@ std::ostream&	operator<<(std::ostream &out, const Fixed& fixed) { return (out <<
 
 int		Fixed::getRawBits() const { return (_value);}
 void	Fixed::setRawBits(int const raw) { _value = raw;}
-float	Fixed::toFloat(void) const {return ((float)this->_value / (float)(1 << this->_bits));}
-int		Fixed::toInt(void) const {return (this->_value >> this->_bits);}
+float	Fixed::toFloat(void) const {return ((float)_value / (float)(1 << _bits));}
+int		Fixed::toInt(void) const {return (_value >> _bits);}
 
 

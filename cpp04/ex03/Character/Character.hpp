@@ -31,9 +31,14 @@ class Character : virtual public ICharacter{
 		size_t		_trash_size;
 
 		void		setTrash(AMateria *materia);
+	protected:
+		Character();
 	public:
 		~Character();
 		Character(std::string name);
+		Character(const Character &cpy);
+
+		Character			&operator=(const Character &cpy);
 
 		std::string const	&getName() const;
 		void				equip(AMateria* m);
