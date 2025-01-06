@@ -13,20 +13,21 @@
 #pragma once
 
 #include <iostream>
+#include "AForm.hpp"
 
 #ifndef BUREAUCRAT
 #define BUREAUCRAT "Worker"
 #define GRADE_MAX 1
 #define GRADE_MIN 150
-#define GRADE_HIGHT "Grade is too high!"
-#define GRADE_LOW "Grade is too low!"
 #endif
+
+class AForm;
 
 class Bureaucrat
 {
 private:
-	const std::string _name;
-	int _grade;
+	const std::string	_name;
+	int					_grade;
 
 public:
 	~Bureaucrat();
@@ -42,6 +43,7 @@ public:
 	int getGrade() const;
 	void upGrade();
 	void downGrade();
+	void signForm(AForm &form);
 
 	class GradeTooHighException : public std::exception	{public: virtual const char *what() const throw(); };
 	class GradeTooLowException : public std::exception {public: virtual const char *what() const throw(); };

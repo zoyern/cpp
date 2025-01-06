@@ -13,39 +13,40 @@
 #pragma once
 
 #include <iostream>
+#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-#ifndef BUREAUCRAT
-#define BUREAUCRAT "Worker"
-#define GRADE_MAX 1
-#define GRADE_MIN 150
+#ifndef RRFORM
+#define RRFORM "RobotomyRequestForm"
+#define RRFORM_SIGN GRADE_MIN
+#define RRFORM_EXEC GRADE_MIN
 #define GRADE_HIGHT "Grade is too high!"
 #define GRADE_LOW "Grade is too low!"
 #endif
 
-class Bureaucrat
+class Bureaucrat;
+
+class RobotomyRequestForm : public AForm
 {
-private:
-	const std::string _name;
-	int _grade;
-
 public:
-	~Bureaucrat();
-	Bureaucrat();
-	Bureaucrat(std::string name);
-	Bureaucrat(int grade);
-	Bureaucrat(std::string name, int grade);
-	Bureaucrat(const Bureaucrat &cpy);
+	~RobotomyRequestForm();
+	RobotomyRequestForm();
+	RobotomyRequestForm(std::string name);
+	RobotomyRequestForm(std::string name, int sign_grade, int exec_grade);
+	RobotomyRequestForm(int sign_grade, int exec_grade);
+	RobotomyRequestForm(const RobotomyRequestForm &cpy);
 
-	Bureaucrat &operator=(const Bureaucrat &cpy);
+	RobotomyRequestForm &operator=(const RobotomyRequestForm &cpy);
 
+	void beSigned(const Bureaucrat &bureaucrat);
 	const std::string &getName() const;
-	int getGrade() const;
-	void upGrade();
-	void downGrade();
+	int getSignGrade() const;
+	int getExecGrade() const;
+	bool getSigned() const;
 
-	class GradeTooHighException : public std::exception	{public: virtual const char *what() const throw(); };
-	class GradeTooLowException : public std::exception {public: virtual const char *what() const throw(); };
+	class GradeTooHighException	: public std::exception	{ public: virtual const char *what() const throw();};
+	class GradeTooLowException	: public std::exception	{ public: virtual const char *what() const throw();};
 };
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
-std::ostream &operator<<(std::ostream &out, const Bureaucrat *bureaucrat);
+std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm &form);
+std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm *form);

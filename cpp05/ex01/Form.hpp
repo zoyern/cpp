@@ -13,39 +13,45 @@
 #pragma once
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
-#ifndef BUREAUCRAT
-#define BUREAUCRAT "Worker"
-#define GRADE_MAX 1
-#define GRADE_MIN 150
+#ifndef FORM
+#define FORM "Form"
+#define FORM_SIGN GRADE_MIN
+#define FORM_EXEC GRADE_MIN
 #define GRADE_HIGHT "Grade is too high!"
 #define GRADE_LOW "Grade is too low!"
 #endif
 
-class Bureaucrat
+class Bureaucrat;
+
+class Form
 {
 private:
 	const std::string _name;
-	int _grade;
+	bool _signed;
+	const int _sign_grade;
+	const int _exec_grade;
 
 public:
-	~Bureaucrat();
-	Bureaucrat();
-	Bureaucrat(std::string name);
-	Bureaucrat(int grade);
-	Bureaucrat(std::string name, int grade);
-	Bureaucrat(const Bureaucrat &cpy);
+	~Form();
+	Form();
+	Form(std::string name);
+	Form(std::string name, int sign_grade, int exec_grade);
+	Form(int sign_grade, int exec_grade);
+	Form(const Form &cpy);
 
-	Bureaucrat &operator=(const Bureaucrat &cpy);
+	Form &operator=(const Form &cpy);
 
+	void beSigned(const Bureaucrat &bureaucrat);
 	const std::string &getName() const;
-	int getGrade() const;
-	void upGrade();
-	void downGrade();
+	int getSignGrade() const;
+	int getExecGrade() const;
+	bool getSigned() const;
 
-	class GradeTooHighException : public std::exception	{public: virtual const char *what() const throw(); };
-	class GradeTooLowException : public std::exception {public: virtual const char *what() const throw(); };
+	class GradeTooHighException	: public std::exception	{ public: virtual const char *what() const throw();};
+	class GradeTooLowException	: public std::exception	{ public: virtual const char *what() const throw();};
 };
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
-std::ostream &operator<<(std::ostream &out, const Bureaucrat *bureaucrat);
+std::ostream &operator<<(std::ostream &out, const Form &form);
+std::ostream &operator<<(std::ostream &out, const Form *form);

@@ -6,13 +6,13 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/12/22 08:13:56 by marvin           ###   ########.fr        #
+#    Updated: 2024/12/25 06:15:14 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = worker
 
-BUILD_DIR   = build
+BUILD_DIR   = .build
 OBJ_DIR     = $(BUILD_DIR)/obj
 DEP_DIR     = $(BUILD_DIR)/dep
 
@@ -20,7 +20,7 @@ CC          = g++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = main.cpp Bureaucrat.cpp
+SRC         = main.cpp Bureaucrat.cpp AForm.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 

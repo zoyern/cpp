@@ -12,19 +12,11 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::~Bureaucrat() { std::cout << "Bureaucrat" << "\t\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], destroyed !" << std::endl; }
-Bureaucrat::Bureaucrat() : _name(BUREAUCRAT), _grade(GRADE_MIN) { std::cout << "Bureaucrat" << "\t\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl; }
-Bureaucrat::Bureaucrat(int grade) : _name(BUREAUCRAT), _grade(GRADE_MIN)
-{
-	_grade = grade < GRADE_MAX ? throw(Bureaucrat::GradeTooHighException()) : (grade > GRADE_MIN ? throw(Bureaucrat::GradeTooLowException()) : grade);
-	std::cout << "Bureaucrat" << "\t\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl;
-}
-Bureaucrat::Bureaucrat(std::string name) : _name(name), _grade(GRADE_MIN) { std::cout << "Bureaucrat" << "\t\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl; }
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(GRADE_MIN)
-{
-	_grade = grade < GRADE_MAX ? throw(Bureaucrat::GradeTooHighException()) : (grade > GRADE_MIN ? throw(Bureaucrat::GradeTooLowException()) : grade);
-	std::cout << "Bureaucrat" << "\t\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl;
-}
+Bureaucrat::~Bureaucrat() { std::cout << "Bureaucrat" << "\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], destroyed !" << std::endl; }
+Bureaucrat::Bureaucrat() : _name(BUREAUCRAT), _grade(GRADE_MIN) { std::cout << "Bureaucrat" << "\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl; }
+Bureaucrat::Bureaucrat(int grade) : _name(BUREAUCRAT), _grade(grade < GRADE_MAX ? throw(Bureaucrat::GradeTooHighException()) : (grade > GRADE_MIN ? throw(Bureaucrat::GradeTooLowException()) : grade)) { std::cout << "Bureaucrat" << "\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl; }
+Bureaucrat::Bureaucrat(std::string name) : _name(name), _grade(GRADE_MIN) { std::cout << "Bureaucrat" << "\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl; }
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade < GRADE_MAX ? throw(Bureaucrat::GradeTooHighException()) : (grade > GRADE_MIN ? throw(Bureaucrat::GradeTooLowException()) : grade)) { std::cout << "Bureaucrat" << "\t : " << "name:[ " << _name << " ], " << "grade:[ " << _grade << " ], created !" << std::endl; }
 Bureaucrat::Bureaucrat(const Bureaucrat &cpy) : _name(cpy._name)
 {
 	*this = cpy;
@@ -54,6 +46,12 @@ void Bureaucrat::downGrade()
 }
 
 int Bureaucrat::getGrade() const { return (_grade); }
+
+void Bureaucrat::signForm(Form &form)
+{
+	try	{form.beSigned(*this);}
+	catch (Form::GradeTooLowException &e){	throw(Bureaucrat::GradeTooLowException());}
+}
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() { return (GRADE_HIGHT); }
 const char *Bureaucrat::GradeTooLowException::what() const throw() { return (GRADE_LOW); }
