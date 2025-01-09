@@ -20,7 +20,6 @@
 #  define SCAVTRAP_HEALTH 100
 #  define SCAVTRAP_ENERGY 50
 #  define SCAVTRAP_DAMAGE 20
-#  define SCAVTRAP_COST 1
 #  define SCAVTRAP_PRINT "ScavTrap"
 #  define SCAVTRAP_ATTACK "points of presence !"
 # endif

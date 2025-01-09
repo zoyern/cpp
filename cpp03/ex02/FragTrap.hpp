@@ -20,7 +20,6 @@
 #  define FRAGTRAP_HEALTH 100
 #  define FRAGTRAP_ENERGY 100
 #  define FRAGTRAP_DAMAGE 30
-#  define FRAGTRAP_COST 1
 #  define FRAGTRAP_PRINT "FragTrap"
 #  define FRAGTRAP_ATTACK "points of joy !"
 #  define FRAGTRAP_HIGHTFIVES "points of joy !"

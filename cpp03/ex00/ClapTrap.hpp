@@ -28,7 +28,6 @@
 #  define CLAPTRAP_HEALTH 10
 #  define CLAPTRAP_ENERGY 10
 #  define CLAPTRAP_DAMAGE 0
-#  define CLAPTRAP_COST 1
 #  define CLAPTRAP_PRINT "ClapTrap"
 #  define CLAPTRAP_ATTACK "points of damage !"
 # endif
