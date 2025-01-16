@@ -22,12 +22,11 @@
 #  define FRAGTRAP_DAMAGE 30
 #  define FRAGTRAP_PRINT "FragTrap"
 #  define FRAGTRAP_ATTACK "points of joy !"
-#  define FRAGTRAP_HIGHTFIVES "points of joy !"
 # endif
 
 class FragTrap : public ClapTrap{
 	public:
-		virtual	~FragTrap();
+		~FragTrap();
 		FragTrap();
 		FragTrap(std::string name);
 		FragTrap(const FragTrap &cpy);

@@ -33,7 +33,7 @@
 # endif
 
 class ClapTrap {
-	protected:
+	private:
 		std::string	_name;
 		int			_health;
 		int			_energy;
