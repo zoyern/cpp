@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2024/12/05 01:28:56 by marvin           ###   ########.fr        #
+#    Updated: 2025/03/05 18:57:03 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = zoo
+NAME        = materia
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj

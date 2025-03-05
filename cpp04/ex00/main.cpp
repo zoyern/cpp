@@ -16,49 +16,86 @@
 
 
 int main(void) {
-  std::cout << "--- Project pdf: derived class overrides base class method ---"
-            << std::endl
-            << std::endl;
-  const Animal *meta = new Animal();
-  const Animal *i = new Cat();
-  const Animal *j = new Dog();
-  std::cout << i->getType() << " " << std::endl;
-  std::cout << j->getType() << " " << std::endl;
-  i->makeSound(); 
-  j->makeSound();
-  meta->makeSound();
-  delete meta;
-  delete i;
-  delete j;
+  // Test de création et destruction
+  std::cout << "--- Test de création et destruction ---" << std::endl;
+  {
+	  Animal* animal = new Animal();
+	  Animal* cat = new Cat();
+	  Animal* dog = new Dog();
+	  WrongAnimal* wrongAnimal = new WrongAnimal();
+	  WrongCat* wrongCat = new WrongCat();
 
-  std::cout << std::endl << "--- Objects are created as derived class ---"
-            << std::endl
-            << std::endl;
-  const Animal *meta2 = new Animal();
-  const Cat *i2 = new Cat();
-  const Dog *j2 = new Dog();
-  std::cout << i2->getType() << " " << std::endl;
-  std::cout << j2->getType() << " " << std::endl;
-  i2->makeSound();
-  j2->makeSound();
-  meta2->makeSound();
-  delete meta2;
-  delete i2;
-  delete j2;
+	  delete animal;
+	  delete cat;
+	  delete dog;
+	  delete wrongAnimal;
+	  delete wrongCat;
+  }
 
-  std::cout << std::endl << "--- WrongAnimal Test: derived class doesn't override base "
-               "class function ---"
-            << std::endl
-            << std::endl;
-  const WrongAnimal *meta3 = new WrongAnimal();
-  std::cout << "-------" << std::endl;
-  const WrongAnimal *i3 = new WrongCat();
-  std::cout << meta3->getType() << " " << std::endl;
-  std::cout << i3->getType() << " " << std::endl;
-  meta3->makeSound();
-  i3->makeSound(); 
-  delete meta3;
-  delete i3;
+  // Test de polymorphisme
+  std::cout << "\n--- Test de polymorphisme ---" << std::endl;
+  {
+	  Animal* animal = new Animal();
+	  Animal* cat = new Cat();
+	  Animal* dog = new Dog();
+	  WrongAnimal* wrongAnimal = new WrongAnimal();
+	  WrongCat* wrongCat = new WrongCat();
 
+	  animal->makeSound(); // Devrait appeler Animal::makeSound
+	  cat->makeSound();    // Devrait appeler Cat::makeSound
+	  dog->makeSound();    // Devrait appeler Dog::makeSound
+	  wrongAnimal->makeSound(); // Devrait appeler WrongAnimal::makeSound
+	  wrongCat->makeSound();    // Devrait appeler WrongCat::makeSound
+
+	  delete animal;
+	  delete cat;
+	  delete dog;
+	  delete wrongAnimal;
+	  delete wrongCat;
+  }
+
+  // Test de copie et d'affectation
+  std::cout << "\n--- Test de copie et d'affectation ---" << std::endl;
+  {
+	  Cat originalCat;
+	  Cat copiedCat(originalCat);
+	  Cat assignedCat = originalCat;
+
+	  std::cout << "Original Cat Type: " << originalCat.getType() << std::endl;
+	  std::cout << "Copied Cat Type: " << copiedCat.getType() << std::endl;
+	  std::cout << "Assigned Cat Type: " << assignedCat.getType() << std::endl;
+
+	  Dog originalDog;
+	  Dog copiedDog(originalDog);
+	  Dog assignedDog = originalDog;
+
+	  std::cout << "Original Dog Type: " << originalDog.getType() << std::endl;
+	  std::cout << "Copied Dog Type: " << copiedDog.getType() << std::endl;
+	  std::cout << "Assigned Dog Type: " << assignedDog.getType() << std::endl;
+
+	  WrongCat originalWrongCat;
+	  WrongCat copiedWrongCat(originalWrongCat);
+	  WrongCat assignedWrongCat = originalWrongCat;
+
+	  std::cout << "Original WrongCat Type: " << originalWrongCat.getType() << std::endl;
+	  std::cout << "Copied WrongCat Type: " << copiedWrongCat.getType() << std::endl;
+	  std::cout << "Assigned WrongCat Type: " << assignedWrongCat.getType() << std::endl;
+  }
+
+  // Test de type
+  std::cout << "\n--- Test de type ---" << std::endl;
+  {
+	  Animal animal;
+	  Cat cat;
+	  Dog dog;
+	  WrongAnimal wrongAnimal;
+	  WrongCat wrongCat;
+
+	  std::cout << "Animal Type: " << animal.getType() << std::endl;
+	  std::cout << "Cat Type: " << cat.getType() << std::endl;
+	  std::cout << "Dog Type: " << dog.getType() << std::endl;
+	  std::cout << "WrongAnimal Type: " << wrongAnimal.getType() << std::endl;
+	  std::cout << "WrongCat Type: " << wrongCat.getType() << std::endl;
+  }
   return 0;
 }

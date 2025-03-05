@@ -31,6 +31,11 @@ class WrongAnimal : virtual public Animal{
 		~WrongAnimal();
 		WrongAnimal();
 		WrongAnimal(std::string type);
+		WrongAnimal(const WrongAnimal &cpy);
+
+		WrongAnimal		&operator=(const WrongAnimal &cpy);
+		
+		virtual void	makeSound() const;
 };
 
 #endif

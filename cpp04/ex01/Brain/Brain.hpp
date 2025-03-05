@@ -30,9 +30,9 @@ class Brain{
 	public:
 		~Brain();
 		Brain();
-		Brain(const Brain &brain);
+		Brain(const Brain &cpy);
 
-		Brain	&operator=(const Brain &brain);
+		Brain	&operator=(const Brain &cpy);
 
 		std::string	getIdea(size_t index) const;
 		bool		setIdea(std::string idea);
