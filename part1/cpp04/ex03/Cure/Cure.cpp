@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cure.hpp"
+#include "Cure.hpp"
 
 Cure::~Cure() {}
 Cure::Cure() : AMateria(CURE_TYPE) {}
