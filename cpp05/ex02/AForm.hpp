@@ -13,45 +13,59 @@
 #pragma once
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+
+#include <iostream>
+#include <exception>
 
 #ifndef AFORM
-#define AFORM "AForm"
-#define AFORM_SIGN GRADE_MIN
-#define AFORM_EXEC GRADE_MIN
-#define GRADE_HIGHT "Grade is too high!"
-#define GRADE_LOW "Grade is too low!"
+	#define AFORM "AFORM"
+	#define AFORM_DEFAULT "Default form"
+	#define AFORM_DESTROY "Destroyed !"
+	#define AFORM_CREATE "Created !!"
+	#define AFORM_COPY "Copying ..."
+	#define AFORM_CONSTRUCT 1
+	#define AFORM_SIGN 50
+	#define AFORM_EXEC 25
+	#define AFORM_SIGNED false
 #endif
 
-class Bureaucrat;
+#include "Bureaucrat.hpp"
+
+class	Bureaucrat;
 
 class AForm
 {
 private:
-	const std::string _name;
-	bool _signed;
-	const int _sign_grade;
-	const int _exec_grade;
+	const std::string	_name;
+	size_t				_g_sign;
+	size_t				_g_exec;
+	bool				_signed;
+
+	void	construct(std::string msg) const;
 
 public:
+	class GradeTooHighException : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class GradeTooLowException : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
 	~AForm();
 	AForm();
-	AForm(std::string name);
-	AForm(std::string name, int sign_grade, int exec_grade);
-	AForm(int sign_grade, int exec_grade);
 	AForm(const AForm &cpy);
+	AForm(const std::string &name, size_t gradeToSign, size_t gradeToExecute);
 
 	AForm &operator=(const AForm &cpy);
 
-	void beSigned(const Bureaucrat &bureaucrat);
-	const std::string &getName() const;
-	int getSignGrade() const;
-	int getExecGrade() const;
-	bool getSigned() const;
-
-	class GradeTooHighException	: public std::exception	{ public: virtual const char *what() const throw();};
-	class GradeTooLowException	: public std::exception	{ public: virtual const char *what() const throw();};
+	virtual void		execute(const Bureaucrat &executor) const = 0;
+	const std::string	&getName() const;
+    size_t				getGradeToSign() const;
+    size_t				getGradeToExecute() const;
+	size_t				checkGrade(size_t grade) const;
+	bool				getIsSigned() const;
+	void				beSigned(const Bureaucrat &bureaucrat);
 };
 
 std::ostream &operator<<(std::ostream &out, const AForm &form);
-std::ostream &operator<<(std::ostream &out, const AForm *form);

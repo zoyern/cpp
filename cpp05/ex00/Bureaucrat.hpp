@@ -13,39 +13,58 @@
 #pragma once
 
 #include <iostream>
+#include <exception>
 
 #ifndef BUREAUCRAT
-#define BUREAUCRAT "Worker"
-#define GRADE_MAX 1
-#define GRADE_MIN 150
-#define GRADE_HIGHT "Grade is too high!"
-#define GRADE_LOW "Grade is too low!"
+	#define BUREAUCRAT "BUREAUCRAT"
+	#define BUREAUCRAT_DEFAULT "Worker"
+	#define BUREAUCRAT_DESTROY "Fired !!"
+	#define BUREAUCRAT_CREATE "Recruited !"
+	#define BUREAUCRAT_COPY "Copying ..."
+	#define BUREAUCRAT_CONSTRUCT 1
+#endif
+
+#ifndef GRADE
+	#define GRADE 100
+	#define GRADE_MAX 1
+	#define GRADE_MIN 150
+	#define GRADE_HIGHT "Grade is too high!"
+	#define GRADE_LOW "Grade is too low!"
 #endif
 
 class Bureaucrat
 {
 private:
-	const std::string _name;
-	int _grade;
+	const std::string	_name;
+	size_t				_grade;
+
+	void	construct(std::string msg) const;
+	size_t	checkGrade(size_t grade) const;
 
 public:
+	class GradeTooHighException : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class GradeTooLowException : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
 	~Bureaucrat();
 	Bureaucrat();
-	Bureaucrat(std::string name);
-	Bureaucrat(int grade);
-	Bureaucrat(std::string name, int grade);
 	Bureaucrat(const Bureaucrat &cpy);
+	Bureaucrat(std::string name);
+	Bureaucrat(size_t grade);
+	Bureaucrat(std::string name, int grade);
+
 
 	Bureaucrat &operator=(const Bureaucrat &cpy);
 
-	const std::string &getName() const;
-	int getGrade() const;
-	void upGrade();
-	void downGrade();
-
-	class GradeTooHighException : public std::exception	{public: virtual const char *what() const throw(); };
-	class GradeTooLowException : public std::exception {public: virtual const char *what() const throw(); };
+	const std::string	&getName() const;
+	size_t				getGrade() const;
+	void				setGrade(size_t grade);
+	void				upGrade();
+	void				downGrade();
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
-std::ostream &operator<<(std::ostream &out, const Bureaucrat *bureaucrat);

@@ -12,38 +12,35 @@
 
 #include "Form.hpp"
 
-Form::~Form() { std::cout << "Form" << "\t\t : " << "name:[ " << _name << " ], " << " :  signed:[ " << _signed << " ], sign_grade:[ " << _sign_grade << " ], exec_grade:[ " << _exec_grade << " ]. destroyed !" << std::endl; }
-Form::Form() : _name(FORM), _signed(false), _sign_grade(GRADE_MIN), _exec_grade(GRADE_MIN) { std::cout << "Form" << "\t\t : " << "name:[ " << _name << " ], " << " :  signed:[ " << _signed << " ], sign_grade:[ " << _sign_grade << " ], exec_grade:[ " << _exec_grade << " ]. created !" << std::endl; }
-Form::Form(std::string name) : _name(name), _signed(false), _sign_grade(GRADE_MIN), _exec_grade(GRADE_MIN) { std::cout << "Form" << "\t\t : " << "name:[ " << _name << " ], " << " :  signed:[ " << _signed << " ], sign_grade:[ " << _sign_grade << " ], exec_grade:[ " << _exec_grade << " ]. created !" << std::endl; }
-Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name), _signed(false), _sign_grade(sign_grade < GRADE_MAX ? throw(Form::GradeTooHighException()) : (sign_grade > GRADE_MIN ? throw(Form::GradeTooLowException()) : sign_grade)), _exec_grade(exec_grade < GRADE_MAX ? throw(Form::GradeTooHighException()) : (exec_grade > GRADE_MIN ? throw(Form::GradeTooLowException()) : exec_grade)) { std::cout << "Form" << "\t\t : " << "name:[ " << _name << " ], " << " :  signed:[ " << _signed << " ], sign_grade:[ " << _sign_grade << " ], exec_grade:[ " << _exec_grade << " ]. created !" << std::endl; }
-Form::Form(int sign_grade, int exec_grade) : _name(FORM), _signed(false), _sign_grade(sign_grade < GRADE_MAX ? throw(Form::GradeTooHighException()) : (sign_grade > GRADE_MIN ? throw(Form::GradeTooLowException()) : sign_grade)), _exec_grade(exec_grade < GRADE_MAX ? throw(Form::GradeTooHighException()) : (exec_grade > GRADE_MIN ? throw(Form::GradeTooLowException()) : exec_grade)) { std::cout << "Form" << "\t\t : " << "name:[ " << _name << " ], " << " :  signed:[ " << _signed << " ], sign_grade:[ " << _sign_grade << " ], exec_grade:[ " << _exec_grade << " ]. created !" << std::endl; }
-Form::Form(const Form &cpy) : _name(cpy._name), _sign_grade(cpy._sign_grade), _exec_grade(cpy._exec_grade)
-{
-	*this = cpy;
-	std::cout << "Form" << "\t\t : " << "name:[ " << _name << " ], " << "\t :  signed:[ " << _signed << " ], sign_grade:[ " << _sign_grade << " ], exec_grade:[ " << _exec_grade << " ]. cpy created !" << std::endl;
-}
+Form::~Form() { construct(FORM_DESTROY);}
+Form::Form(const Form &cpy) : _name(cpy._name) {*this = cpy; construct(FORM_COPY);}
+Form::Form() : _name(FORM_DEFAULT), _g_sign(checkGrade(FORM_SIGN)), _g_exec(checkGrade(FORM_EXEC)), _signed(FORM_SIGNED) { construct(FORM_CREATE);}
+Form::Form(const std::string &name, size_t g_sign, size_t g_exec) : _name(name), _g_sign(checkGrade(g_sign)), _g_exec(checkGrade(g_exec)), _signed(FORM_SIGNED) { construct(FORM_CREATE);}
+void Form::construct(std::string msg) const { if (FORM_CONSTRUCT) { std::cout << FORM << "\t\t : name:[ " << _name << " ], g_sign : [ " << _g_sign  << " ], g_exec : [ " << _g_exec  << " ]  :" << msg << std::endl;}}
 
-Form &Form::operator=(const Form &cpy)
-{
-	if (this == &cpy)
-		return (*this);
-	_signed = cpy._signed;
-	return (*this);
-}
-
-const std::string &Form::getName() const { return (_name); }
-int Form::getSignGrade() const { return (_sign_grade); }
-int Form::getExecGrade() const { return (_exec_grade); }
-bool Form::getSigned() const { return (_signed); }
-
-void Form::beSigned(const Bureaucrat &bureaucrat)
-{
-	_signed = bureaucrat.getGrade() > _sign_grade ? throw(Form::GradeTooLowException()) : true;
-	std::cout << "Form" << "\t\t\t : " << "name:[ " << bureaucrat.getName() << " ], " << " : signed Form:[ " << _name << " ]." << std::endl;
-}
-
-const char *Form::GradeTooHighException::what() const throw() { return (GRADE_HIGHT); }
+const char *Form::GradeTooHighException::what() const throw() { return (GRADE_HIGHT);}
 const char *Form::GradeTooLowException::what() const throw() { return (GRADE_LOW); }
 
-std::ostream &operator<<(std::ostream &out, const Form &form) { return (out << "form name:[ " << form.getName() << " ], " << "\t :  signed:[ " << form.getSigned() << " ], sign_grade:[ " << form.getSignGrade() << " ], exec_grade:[ " << form.getExecGrade() << " ]." << std::endl); }
-std::ostream &operator<<(std::ostream &out, const Form *form) { return (!form ? out << form : out << *form); }
+size_t		Form::checkGrade(size_t grade) const { return (
+	grade < GRADE_MAX ? throw (GradeTooHighException()) :
+	grade > GRADE_MIN ? throw (GradeTooLowException()) :
+	grade);
+}
+
+Form			&Form::operator=(const Form &cpy){ if (this == &cpy) return (*this);
+	return (
+		_g_sign = checkGrade(cpy._g_sign),
+		_g_exec = checkGrade(cpy._g_exec),
+		_signed = checkGrade(cpy._signed),
+		*this);
+}
+
+const std::string	&Form::getName() const { return (_name); }
+size_t				Form::getGradeToSign() const { return (_g_sign); }
+size_t				Form::getGradeToExecute() const { return (_g_exec); }
+bool				Form::getIsSigned() const { return (_signed); }
+void				Form::beSigned(const Bureaucrat &bureaucrat) { bureaucrat.getGrade() <= _g_sign ? _signed = true : throw (GradeTooLowException());}
+
+std::ostream		&operator<<(std::ostream &out, const Form &form) {
+	return (out << "\n" << FORM << "\t\t : info[ name: ( " << form.getName() << " ), GradeToSign :  ( " << form.getGradeToSign()  << " ), GradeToExecute :  ( " << form.getGradeToExecute()  << " ), IsSigned :  ( " << (form.getIsSigned() ? "true" : "false")  << " ) ]."  << std::endl);
+}

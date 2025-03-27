@@ -13,45 +13,58 @@
 #pragma once
 
 #include <iostream>
+
+#include <iostream>
+#include <exception>
+
 #include "Bureaucrat.hpp"
 
-#ifndef FORM
-#define FORM "Form"
-#define FORM_SIGN GRADE_MIN
-#define FORM_EXEC GRADE_MIN
-#define GRADE_HIGHT "Grade is too high!"
-#define GRADE_LOW "Grade is too low!"
-#endif
+class	Bureaucrat;
 
-class Bureaucrat;
+#ifndef FORM
+	#define FORM "FORM"
+	#define FORM_DEFAULT "Default form"
+	#define FORM_DESTROY "Destroyed !"
+	#define FORM_CREATE "Created !!"
+	#define FORM_COPY "Copying ..."
+	#define FORM_CONSTRUCT 1
+	#define FORM_SIGN 50
+	#define FORM_EXEC 25
+	#define FORM_SIGNED false
+#endif
 
 class Form
 {
 private:
-	const std::string _name;
-	bool _signed;
-	const int _sign_grade;
-	const int _exec_grade;
+	const std::string	_name;
+	size_t				_g_sign;
+	size_t				_g_exec;
+	bool				_signed;
+
+	void	construct(std::string msg) const;
+	size_t	checkGrade(size_t grade) const;
 
 public:
+	class GradeTooHighException : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class GradeTooLowException : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
 	~Form();
 	Form();
-	Form(std::string name);
-	Form(std::string name, int sign_grade, int exec_grade);
-	Form(int sign_grade, int exec_grade);
 	Form(const Form &cpy);
+	Form(const std::string &name, size_t gradeToSign, size_t gradeToExecute);
 
 	Form &operator=(const Form &cpy);
 
-	void beSigned(const Bureaucrat &bureaucrat);
-	const std::string &getName() const;
-	int getSignGrade() const;
-	int getExecGrade() const;
-	bool getSigned() const;
-
-	class GradeTooHighException	: public std::exception	{ public: virtual const char *what() const throw();};
-	class GradeTooLowException	: public std::exception	{ public: virtual const char *what() const throw();};
+	const std::string	&getName() const;
+    size_t				getGradeToSign() const;
+    size_t				getGradeToExecute() const;
+	bool				getIsSigned() const;
+	void				beSigned(const Bureaucrat &bureaucrat);
 };
 
 std::ostream &operator<<(std::ostream &out, const Form &form);
-std::ostream &operator<<(std::ostream &out, const Form *form);

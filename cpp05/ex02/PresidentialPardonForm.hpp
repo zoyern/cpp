@@ -17,27 +17,26 @@
 
 #include "AForm.hpp"
 
-
-#ifndef ROBOTOMYREQUESTFORM
-	#define ROBOTOMYREQUESTFORM "ROBOTOMYREQUESTFORM"
-	#define ROBOTOMYREQUESTFORM_DEFAULT "RobotomyRequest form"
-	#define ROBOTOMYREQUESTFORM_CONSTRUCT 1
-	#define ROBOTOMYREQUESTFORM_SIGN 72
-	#define ROBOTOMYREQUESTFORM_EXEC 45
+#ifndef PRESIDENTIALPARDONFORM
+	#define PRESIDENTIALPARDONFORM "PRESIDENTIALPARDONFORM"
+	#define PRESIDENTIALPARDONFORM_DEFAULT "PresidentialPardon form"
+	#define PRESIDENTIALPARDONFORM_CONSTRUCT 1
+	#define PRESIDENTIALPARDONFORM_SIGN 25
+	#define PRESIDENTIALPARDONFORM_EXEC 5
 #endif
 
-class RobotomyRequestForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 private:
 	void	construct(std::string msg) const;
 
 public:
-	~RobotomyRequestForm();
-	RobotomyRequestForm();
-	RobotomyRequestForm(const RobotomyRequestForm &cpy);
-	RobotomyRequestForm(const std::string &target);
+	~PresidentialPardonForm();
+	PresidentialPardonForm();
+	PresidentialPardonForm(const PresidentialPardonForm &cpy);
+	PresidentialPardonForm(const std::string &target);
 
-	RobotomyRequestForm	&operator=(const RobotomyRequestForm &cpy);
+	PresidentialPardonForm &operator=(const PresidentialPardonForm &cpy);
 
-	void	execute(const Bureaucrat &executor) const;
+	void		execute(const Bureaucrat &executor) const;
 };
