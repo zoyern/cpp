@@ -67,7 +67,7 @@ public:
 		public:
 			virtual const char *what() const throw();
 	};
-	~AForm();
+	virtual ~AForm();
 	AForm();
 	AForm(const AForm &cpy);
 	AForm(const std::string &name, size_t gradeToSign, size_t gradeToExecute);

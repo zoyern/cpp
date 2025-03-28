@@ -15,29 +15,45 @@
 #include <iostream>
 #include <exception>
 
-#include "AForm.hpp"
-
-#ifndef PRESIDENTIALPARDONFORM
-	#define PRESIDENTIALPARDONFORM "PRESIDENTIALPARDON"
-	#define PRESIDENTIALPARDONFORM_DEFAULT "PresidentialPardon form"
-	#define PRESIDENTIALPARDONFORM_CONSTRUCT 1
-	#define PRESIDENTIALPARDONFORM_SIGN 25
-	#define PRESIDENTIALPARDONFORM_EXEC 5
-	#define PRESIDENTIALPARDONFORM_SUCCES "has been pardoned by Zaphod Beeblebrox."
+#ifndef INTERN
+	#define INTERN "INTERN"
+	#define INTERN_DEFAULT "Intern"
+	#define INTERN_DESTROY "Fired !!"
+	#define INTERN_CREATE "Recruited !"
+	#define INTERN_COPY "Copying ..."
+	#define INTERN_CONSTRUCT 1
+	#define INTERN_SUCCES "creates :"
+	#define INTERN_ERROR "Form name not recognized..."
+	#define INTERN_FORMS {"shrubbery creation", "robotomy request", "presidential pardon"}
+	#define INTERN_FSIZE 3
 #endif
 
-class PresidentialPardonForm : public AForm
+#include "AForm.hpp"
+
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+
+class	AForm;
+
+class Intern
 {
 private:
+
 	void	construct(std::string msg) const;
 
 public:
-	~PresidentialPardonForm();
-	PresidentialPardonForm();
-	PresidentialPardonForm(const PresidentialPardonForm &cpy);
-	PresidentialPardonForm(const std::string &target);
+	class FormNameError : public std::exception	{
+	public:
+		virtual const char *what() const throw();
+	};
+	~Intern();
+	Intern();
+	Intern(const Intern &cpy);
 
-	PresidentialPardonForm &operator=(const PresidentialPardonForm &cpy);
 
-	void		execute(const Bureaucrat &executor) const;
+	Intern &operator=(const Intern &cpy);
+
+	AForm* makeForm(const std::string& formName, const std::string& target);
 };
+
