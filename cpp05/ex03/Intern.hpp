@@ -51,9 +51,11 @@ public:
 	Intern();
 	Intern(const Intern &cpy);
 
-
 	Intern &operator=(const Intern &cpy);
 
+	AForm*	ShrubberyCreation(const std::string& target) const;
+	AForm*	RobotomyRequest(const std::string& target) const;
+	AForm*	PresidentialPardon(const std::string& target) const;
 	AForm* makeForm(const std::string& formName, const std::string& target);
 };
 
