@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2025/05/24 17:42:14 by marvin           ###   ########.fr        #
+#    Updated: 2025/06/02 16:23:03 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJ_DIR     = $(BUILD_DIR)/obj
 DEP_DIR     = $(BUILD_DIR)/dep
 
 CC          = g++
-CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
+CFLAG       = -Wall -Wextra -Wno-unused -Wconversion -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
 SRC         = main.cpp ScalarConverter.cpp
