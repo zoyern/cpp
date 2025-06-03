@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 Base	*generate(void) {
-	std::cout << "Creating ";
+	std::cout << "Creating: ";
 	switch (rand() % 3) {
 		case 0: std::cout << "A" << std::endl; return (new A());
 		case 1: std::cout << "B" << std::endl; return (new B());
@@ -27,7 +27,7 @@ Base	*generate(void) {
 }
 
 void identify(Base* p) {
-	std::cout << "ptr identify: ";
+	std::cout << "* identify: ";
     if (dynamic_cast<A*>(p)) std::cout << "A" << std::endl;
     else if (dynamic_cast<B*>(p)) std::cout << "B" << std::endl;
     else if (dynamic_cast<C*>(p)) std::cout << "C" << std::endl;
@@ -35,6 +35,7 @@ void identify(Base* p) {
 }
 
 void identify(Base& p) {
+	std::cout << "& identify: ";
     try { (void)dynamic_cast<A&>(p); std::cout << "A" << std::endl; return; }
     catch (...) {}
     try { (void)dynamic_cast<B&>(p); std::cout << "B" << std::endl; return; }
@@ -54,6 +55,6 @@ int main(void) {
 
 		delete (p);
 
-		std::cout << "\n";
+		std::cout << std::endl;
 	}
 }
