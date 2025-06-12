@@ -16,6 +16,5 @@
 
 template <typename T>
 void iter(T *array, size_t length, void (*func)(T &)) {
-	if (!array || !length || !func) return;
-	for (size_t i = 0; i < length; ++i) {func(array[i]);}
+	if (array && func) for (size_t i = 0; i < length; ++i) func(array[i]);
 }

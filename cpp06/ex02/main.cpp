@@ -28,20 +28,21 @@ Base	*generate(void) {
 
 void identify(Base* p) {
 	std::cout << "* identify: ";
-    if (dynamic_cast<A*>(p)) std::cout << "A" << std::endl;
-    else if (dynamic_cast<B*>(p)) std::cout << "B" << std::endl;
-    else if (dynamic_cast<C*>(p)) std::cout << "C" << std::endl;
-	else std::cout << "Unknown type" << std::endl;
+    if (dynamic_cast<A*>(p)) {std::cout << "A" << std::endl; return;}
+    if (dynamic_cast<B*>(p)) {std::cout << "B" << std::endl; return;}
+    if (dynamic_cast<C*>(p)) {std::cout << "C" << std::endl; return;}
+	std::cout << "Unknown type" << std::endl;
 }
 
 void identify(Base& p) {
 	std::cout << "& identify: ";
-    try { (void)dynamic_cast<A&>(p); std::cout << "A" << std::endl; return; }
+    try {dynamic_cast<A&>(p); std::cout << "A" << std::endl; return;}
     catch (...) {}
-    try { (void)dynamic_cast<B&>(p); std::cout << "B" << std::endl; return; }
+    try {dynamic_cast<B&>(p); std::cout << "B" << std::endl; return;}
     catch (...) {}
-    try { (void)dynamic_cast<C&>(p); std::cout << "C" << std::endl; return; }
+    try {dynamic_cast<C&>(p); std::cout << "C" << std::endl; return;}
     catch (...) {}
+	std::cout << "Unknown type" << std::endl;
 }
 
 
