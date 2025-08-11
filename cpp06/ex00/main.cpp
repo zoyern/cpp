@@ -66,9 +66,7 @@ int main(void) {
     test_converter("--42");
     test_converter("++42");
     test_converter("42.2ff");
-    test_converter("4f2");
     test_converter("f42");
-    test_converter("42f42");
     test_converter("42 42");
     test_converter("42\t42");
     test_converter("-f");

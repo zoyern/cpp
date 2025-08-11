@@ -57,18 +57,18 @@ type_converter_t ScalarConverter::converter(const std::string &input)
 {
 	if (input.empty())
 		throw std::runtime_error(MSG_EMPTY);
-	if (!isInfinity(input) && ((input.length() == 1 && !std::isdigit(input[0])) || (input.length() == 3 && input.find('\'') != input.rfind('\''))))
-		return static_cast<type_converter_t>(input.length() == 1 ? input[0] : input[1]);
 	if (input == "nan" || input == "nanf")
-		return std::numeric_limits<type_converter_t>::quiet_NaN();
+		return std::numeric_limits<double>::quiet_NaN();
 	if (input == "+inf" || input == "+inff")
-		return std::numeric_limits<type_converter_t>::infinity();
+		return std::numeric_limits<double>::infinity();
 	if (input == "-inf" || input == "-inff")
-		return -std::numeric_limits<type_converter_t>::infinity();
+		return -std::numeric_limits<double>::infinity();
+	if (((input.length() == 1 && !std::isdigit(input[0])) || (input.length() == 3 && input.find('\'') != input.rfind('\''))))
+		return static_cast<type_converter_t>(input.length() == 1 ? input[0] : input[1]);
 
 	std::stringstream s(input);
 	type_converter_t temps;
-	if (!(s >> temps) || (!s.eof() && !(input.at(input.length() - 1) == 'f' && input.find('.') == input.rfind('.') && input.find('f') == input.rfind('f'))) || s.bad() || s.fail())
+	if (!(s >> temps) || (!s.eof() && !(s.peek() == 'f' && input.find('.') == input.rfind('.') && input.find('f') == input.rfind('f'))) || s.fail())
 		throw std::runtime_error(MSG_IMPOSSIBLE);
 	return (temps);
 }
