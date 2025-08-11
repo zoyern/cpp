@@ -13,32 +13,28 @@
 #pragma once
 
 #include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <limits>
+#include <stdexcept>
 
-#define MSG_NON_DISPLAYABLE "Non displayable"
-#define MSG_IMPOSSIBLE "impossible !"
-#define MSG_OVERFLOW "overflow !"
-#define MSG_EMPTY "empty !"
-
-typedef double type_converter_t;
-
-class ScalarConverter {
-public:
-	static void convert(const std::string& input);
+template <typename T>
+class Array {
 private:
-	~ScalarConverter();
-	ScalarConverter();
-	ScalarConverter(const ScalarConverter&);
-	ScalarConverter& operator=(const ScalarConverter&);
+	T				*_array;
+	unsigned int	_size;
+public:
+    ~Array() {delete[] _array;}
+	Array() : _array(NULL), _size(0) {}
+	Array(const Array<T> &cpy) : _array(NULL), _size(0) {*this = cpy;}
+    Array(unsigned int n) : _array(new T[n]()), _size(n) {}
+    
+    Array<T>	&operator=(const Array<T> &cpy) { if (this == &cpy) return (*this); 
+		delete[] _array;
+		_size = cpy._size;
+		_array = new T[_size];
+		for (unsigned int i = 0; i < _size; ++i) {_array[i] = cpy._array[i];}
+		return (*this);
+	}
+	T		&operator[](unsigned int index) {if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
+	const T	&operator[](unsigned int index) const {	if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
 
-	static bool isInfinity(const std::string &input);
-
-	static char   toChar(const std::string& input);
-	static int    toInt(const std::string& input);
-	static float  toFloat(const std::string& input);
-	static double toDouble(const std::string& input);
-
-	static type_converter_t converter(const std::string &input);
+	unsigned int	size() const {return _size;};
 };
