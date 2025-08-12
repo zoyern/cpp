@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = array
+NAME        = mutantStack
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj

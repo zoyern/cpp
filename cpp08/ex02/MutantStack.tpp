@@ -30,27 +30,14 @@
 
 #include <iostream>
 #include <stack>
-#include <algorithm>
 
-#define MSG_OVERFLOW "MutantStack is full !"
-#define MSG_MISS_NUMBERS "Not enough numbers to find a span !"
-
-template <class T>
+template <typename T>
 class MutantStack : public std::stack<T>
 {
-private:
-    unsigned int        _n;
 public:
-    ~MutantStack();
-    MutantStack();
-    MutantStack(unsigned int N);
-    MutantStack(const MutantStack &cpy);
-    MutantStack &operator=(const MutantStack &cpy);
+    typedef typename std::stack<T>::container_type::iterator iterator;
+    typedef typename std::stack<T>::container_type::iterator iterator;
 
-    void	addNumber(int n);
-    int		shortestSpan();
-    int		longestSpan();
-
-	template<typename Iterator>
-    void    addNumbers(Iterator begin, Iterator end);
+    iterator begin(){return (this->c.begin());}
+    iterator end(){return (this->c.end());}
 };
