@@ -13,7 +13,7 @@
 #include "Form.hpp"
 
 Form::~Form() { construct(FORM_DESTROY);}
-Form::Form(const Form &cpy) : _name(cpy._name) {*this = cpy; construct(FORM_COPY);}
+Form::Form(const Form &cpy) : _name(cpy._name), _g_sign(cpy._g_sign), _g_exec(cpy._g_exec) {*this = cpy; construct(FORM_COPY);}
 Form::Form() : _name(FORM_DEFAULT), _g_sign(checkGrade(FORM_SIGN)), _g_exec(checkGrade(FORM_EXEC)), _signed(FORM_SIGNED) { construct(FORM_CREATE);}
 Form::Form(const std::string &name, size_t g_sign, size_t g_exec) : _name(name), _g_sign(checkGrade(g_sign)), _g_exec(checkGrade(g_exec)), _signed(FORM_SIGNED) { construct(FORM_CREATE);}
 void Form::construct(std::string msg) const { if (FORM_CONSTRUCT) { std::cout << FORM << "\t\t : name:[ " << _name << " ], g_sign : [ " << _g_sign  << " ], g_exec : [ " << _g_exec  << " ]  :" << msg << std::endl;}}
@@ -28,11 +28,7 @@ size_t		Form::checkGrade(size_t grade) const { return (
 }
 
 Form			&Form::operator=(const Form &cpy){ if (this == &cpy) return (*this);
-	return (
-		_g_sign = checkGrade(cpy._g_sign),
-		_g_exec = checkGrade(cpy._g_exec),
-		_signed = checkGrade(cpy._signed),
-		*this);
+	return (_signed = checkGrade(cpy._signed), *this);
 }
 
 const std::string	&Form::getName() const { return (_name); }

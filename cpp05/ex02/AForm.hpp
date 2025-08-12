@@ -44,8 +44,8 @@ class AForm
 {
 private:
 	const std::string	_name;
-	size_t				_g_sign;
-	size_t				_g_exec;
+	const size_t		_g_sign;
+	const size_t		_g_exec;
 	bool				_signed;
 
 	void	construct(std::string msg) const;

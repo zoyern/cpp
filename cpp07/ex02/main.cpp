@@ -42,7 +42,9 @@ int main() {
     std::cout << "Modifying original..." << std::endl;
     intArray[0] = 999;
     std::cout << "Original: " << intArray[0] << ", Copy: " << copyArray[0] << std::endl;
-
+    printArray(copyArray);
+    std::cout << "---original----" << std::endl;
+    printArray(intArray);
     std::cout << "\n==== [4] Assignment operator ====" << std::endl;
     Array<int> assignArray;
     assignArray = intArray;
@@ -50,6 +52,7 @@ int main() {
     std::cout << "Modifying assigned..." << std::endl;
     assignArray[1] = 888;
     std::cout << "Assign: " << assignArray[1] << ", Original: " << intArray[1] << std::endl;
+    printArray(assignArray);
 
     std::cout << "\n==== [5] Out of bounds ====" << std::endl;
     try { std::cout << intArray[TEST_SIZE] << std::endl; }

@@ -54,5 +54,14 @@ int main() {
         std::cerr << "Erreur: " << e.what() << '\n';
     }
 
+    try {
+        // Test avec moins de 2 éléments
+        Span sp3(3);
+        sp3.addNumber(42);
+        std::cout << sp3.longestSpan() << '\n'; // devrait déclencher une exception
+    } catch (const std::exception &e) {
+        std::cerr << "Erreur: " << e.what() << '\n';
+    }
+
     return 0;
 }

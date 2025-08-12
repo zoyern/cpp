@@ -17,7 +17,7 @@ BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj
 DEP_DIR     = $(BUILD_DIR)/dep
 
-CC          = g++
+CC          = c++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 

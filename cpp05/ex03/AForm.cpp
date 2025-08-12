@@ -13,7 +13,7 @@
 #include "AForm.hpp"
 
 AForm::~AForm() { construct(AFORM_DESTROY);}
-AForm::AForm(const AForm &cpy) : _name(cpy._name) {*this = cpy; construct(AFORM_COPY);}
+AForm::AForm(const AForm &cpy) : _name(cpy._name), _g_sign(cpy._g_sign), _g_exec(cpy._g_exec) {*this = cpy; construct(AFORM_COPY);}
 AForm::AForm() : _name(AFORM_DEFAULT), _g_sign(checkGrade(AFORM_SIGN)), _g_exec(checkGrade(AFORM_EXEC)), _signed(AFORM_SIGNED) { construct(AFORM_CREATE);}
 AForm::AForm(const std::string &name, size_t g_sign, size_t g_exec) : _name(name), _g_sign(checkGrade(g_sign)), _g_exec(checkGrade(g_exec)), _signed(AFORM_SIGNED) { construct(AFORM_CREATE);}
 void AForm::construct(std::string msg) const { if (AFORM_CONSTRUCT) { std::cout << AFORM << "\t\t\t : name:[ " << _name << " ], g_sign : [ " << _g_sign  << " ], g_exec : [ " << _g_exec  << " ]  :" << msg << std::endl;}}
@@ -31,11 +31,7 @@ bool		AForm::checkGrade(size_t grade, size_t grade_min) const { return (
 }
 
 AForm			&AForm::operator=(const AForm &cpy){ if (this == &cpy) return (*this);
-	return (
-		_g_sign = checkGrade(cpy._g_sign),
-		_g_exec = checkGrade(cpy._g_exec),
-		_signed = checkGrade(cpy._signed),
-		*this);
+	return (_signed = checkGrade(cpy._signed), *this);
 }
 
 const std::string	&AForm::getName() const { return (_name); }
