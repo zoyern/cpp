@@ -12,7 +12,8 @@
 
 #include "Serializer.hpp"
 
-int main() {
+int main()
+{
     // 1. Création d'une instance de Data
     Data original;
     original.id = 42;
@@ -29,7 +30,7 @@ int main() {
     std::cout << "\n[Serialized Pointer]: " << raw << "\n";
 
     // 3. Désérialisation (on récupère un pointeur à partir de l'entier)
-    Data* recovered = Serializer::deserialize(raw);
+    Data *recovered = Serializer::deserialize(raw);
 
     // 4. Vérification : les données sont-elles identiques ?
     std::cout << "\nRecovered Data:\n";

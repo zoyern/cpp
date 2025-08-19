@@ -68,7 +68,8 @@ type_converter_t ScalarConverter::converter(const std::string &input)
 
 	std::stringstream s(input);
 	type_converter_t temps;
-	if (!(s >> temps) || (!s.eof() && !(s.peek() == 'f' && input.find('.') == input.rfind('.') && input.find('f') == input.rfind('f'))) || s.fail())
+	if (!(s >> temps) || s.fail() ||
+		(!s.eof() && !(s.get() == 'f' && ((s >> std::ws), s.eof()))))
 		throw std::runtime_error(MSG_IMPOSSIBLE);
 	return (temps);
 }

@@ -24,21 +24,23 @@
 
 typedef double type_converter_t;
 
-class ScalarConverter {
+class ScalarConverter
+{
 public:
-	static void convert(const std::string& input);
+	static void convert(const std::string &input);
+
 private:
 	~ScalarConverter();
 	ScalarConverter();
-	ScalarConverter(const ScalarConverter&);
-	ScalarConverter& operator=(const ScalarConverter&);
+	ScalarConverter(const ScalarConverter &);
+	ScalarConverter &operator=(const ScalarConverter &);
 
 	static bool isInfinity(const std::string &input);
 
-	static char   toChar(const std::string& input);
-	static int    toInt(const std::string& input);
-	static float  toFloat(const std::string& input);
-	static double toDouble(const std::string& input);
+	static char toChar(const std::string &input);
+	static int toInt(const std::string &input);
+	static float toFloat(const std::string &input);
+	static double toDouble(const std::string &input);
 
 	static type_converter_t converter(const std::string &input);
 };

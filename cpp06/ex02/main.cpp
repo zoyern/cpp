@@ -47,7 +47,7 @@ void identify(Base& p) {
 
 
 int main(void) {
-	for (int k = 0; k < 10; k++) {
+	for (int i = 0; i < 10; i++) {
 		Base *p = generate();
 
 		identify(p);

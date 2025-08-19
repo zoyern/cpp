@@ -15,10 +15,11 @@
 #include <iostream>
 #include <stdint.h>
 
-struct Data {
-    int id;
-    std::string name;
-    bool active;
+struct Data
+{
+	int id;
+	std::string name;
+	bool active;
 };
 
 class Serializer
