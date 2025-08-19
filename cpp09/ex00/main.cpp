@@ -14,7 +14,8 @@
 #include "BitcoinExchange.hpp"
 
 int main(int ac, char **av){
-    BitcoinExchange btc(av[1]);
+    if (av)
+    BitcoinExchange::parse(av[1]);
     
     return (0);
 }

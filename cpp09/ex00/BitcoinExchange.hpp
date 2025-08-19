@@ -15,19 +15,28 @@
 #include <iostream>
 #include <ctime>
 #include <sstream>
+#include <fstream>
+#include <map>
 
+#define PATH_DB "data/data.csv"
 #define MIN_VALUE 0
 #define MAX_VALUE 1000
-#define PATH_DB "data/data.csv"
+#define SEP_DATA ','
+#define SEP_INPUT '|'
+#define ERR_NEGATIVE "not a positive number"
+#define ERR_LARGE "too large a number."
+#define ERR_INPUT "bad input => "
+#define ERR_EMPTY "empty !"
 
 class BitcoinExchange
 {
 public:
-    ~BitcoinExchange();
-    BitcoinExchange();
-    BitcoinExchange(const std::string &file);
-    BitcoinExchange(const BitcoinExchange &cpy);
-    BitcoinExchange &operator=(const BitcoinExchange &cpy);
+	static void parse(const std::string &path);
+private:
+	~BitcoinExchange();
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange &);
+	BitcoinExchange &operator=(const BitcoinExchange &);
 
-    bool    checkDate(const std::string &input);
+    static bool    checkDate(const std::string &input);
 };

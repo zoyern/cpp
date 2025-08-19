@@ -14,11 +14,9 @@
 
 BitcoinExchange::~BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange() {}
-BitcoinExchange::BitcoinExchange(const std::string &file) {}
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy) { *this = cpy;}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &) {}
 
-BitcoinExchange    &BitcoinExchange::operator=(const BitcoinExchange &cpy) { if (this == &cpy) return (*this); 
-    return (*this);
+BitcoinExchange    &BitcoinExchange::operator=(const BitcoinExchange &) { return (*this);
 }
 
 bool    BitcoinExchange::checkDate(const std::string &input)
@@ -40,3 +38,27 @@ bool    BitcoinExchange::checkDate(const std::string &input)
         && tm.tm_mday == d
         && t <= std::time(0));
 }
+
+void BitcoinExchange::parse(const std::string &input)
+{
+    std::ifstream src(input.c_str());
+    std::stringstream s(input);
+    float value;
+    std::string date;
+    std::map<std::string, float> m;
+    
+    while (std::getline(s, date,','))
+    {
+        cout<<num<<" ";.
+    }
+    for ( line; std::getline(src, line); ) 
+		if (!())
+    if (value < MIN_VALUE)
+        throw (std::runtime_error(ERR_NEGATIVE));
+    if (value > MAX_VALUE)
+        throw (std::runtime_error(ERR_LARGE));
+    if (checkDate(date))
+        throw (std::runtime_error(ERR_INPUT));
+}
+
+
