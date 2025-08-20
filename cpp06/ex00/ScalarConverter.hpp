@@ -16,11 +16,10 @@
 #include <iomanip>
 #include <sstream>
 #include <limits>
+#include <cctype>
 
 #define MSG_NON_DISPLAYABLE "Non displayable"
-#define MSG_IMPOSSIBLE "impossible !"
-#define MSG_OVERFLOW "overflow !"
-#define MSG_EMPTY "empty !"
+#define MSG_IMPOSSIBLE "impossible"
 
 typedef double type_converter_t;
 

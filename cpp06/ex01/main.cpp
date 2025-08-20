@@ -26,7 +26,7 @@ int main()
     std::cout << "  active: " << (original.active ? "true" : "false") << "\n";
 
     // 2. Sérialisation (on "transforme" le pointeur en entier)
-    unsigned long raw = Serializer::serialize(&original);
+    uintptr_t raw = Serializer::serialize(&original);
     std::cout << "\n[Serialized Pointer]: " << raw << "\n";
 
     // 3. Désérialisation (on récupère un pointeur à partir de l'entier)

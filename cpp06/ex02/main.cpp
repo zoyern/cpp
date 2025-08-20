@@ -14,7 +14,9 @@
 #include "class/A.hpp"
 #include "class/B.hpp"
 #include "class/C.hpp"
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 Base	*generate(void) {
 	std::cout << "Creating: ";
@@ -26,7 +28,7 @@ Base	*generate(void) {
 	return (0);
 }
 
-void identify(Base* p) {
+void identify(Base *p) {
 	std::cout << "* identify: ";
     if (dynamic_cast<A*>(p)) {std::cout << "A" << std::endl; return;}
     if (dynamic_cast<B*>(p)) {std::cout << "B" << std::endl; return;}
@@ -34,7 +36,7 @@ void identify(Base* p) {
 	std::cout << "Unknown type" << std::endl;
 }
 
-void identify(Base& p) {
+void identify(Base &p) {
 	std::cout << "& identify: ";
     try {(void)dynamic_cast<A&>(p); std::cout << "A" << std::endl; return;}
     catch (...) {}
@@ -47,6 +49,7 @@ void identify(Base& p) {
 
 
 int main(void) {
+	srand(time(0));
 	for (int i = 0; i < 10; i++) {
 		Base *p = generate();
 

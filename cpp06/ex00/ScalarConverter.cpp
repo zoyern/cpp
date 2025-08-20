@@ -23,7 +23,7 @@ char ScalarConverter::toChar(const std::string &input)
 {
 	type_converter_t temps = converter(input);
 	if (isInfinity(input) || temps < std::numeric_limits<char>::min() || temps > std::numeric_limits<char>::max())
-		throw std::runtime_error(MSG_OVERFLOW);
+		throw std::runtime_error(MSG_IMPOSSIBLE);
 	if (temps < 32 || temps == 127)
 		throw std::runtime_error(MSG_NON_DISPLAYABLE);
 	return static_cast<char>(temps);
@@ -33,7 +33,7 @@ int ScalarConverter::toInt(const std::string &input)
 {
 	type_converter_t temps = converter(input);
 	if (isInfinity(input) || (temps < std::numeric_limits<int>::min() || temps > std::numeric_limits<int>::max()))
-		throw std::runtime_error(MSG_OVERFLOW);
+		throw std::runtime_error(MSG_IMPOSSIBLE);
 	return static_cast<int>(temps);
 }
 
@@ -41,7 +41,7 @@ float ScalarConverter::toFloat(const std::string &input)
 {
 	type_converter_t temps = converter(input);
 	if (!isInfinity(input) && (temps < -std::numeric_limits<float>::max() || temps > std::numeric_limits<float>::max()))
-		throw std::runtime_error(MSG_OVERFLOW);
+		throw std::runtime_error(MSG_IMPOSSIBLE);
 	return static_cast<float>(temps);
 }
 
@@ -49,22 +49,21 @@ double ScalarConverter::toDouble(const std::string &input)
 {
 	type_converter_t temps = converter(input);
 	if (!isInfinity(input) && (temps < -std::numeric_limits<double>::max() || temps > std::numeric_limits<double>::max()))
-		throw std::runtime_error(MSG_OVERFLOW);
+		throw std::runtime_error(MSG_IMPOSSIBLE);
 	return static_cast<double>(temps);
 }
 
 type_converter_t ScalarConverter::converter(const std::string &input)
 {
-	if (input.empty())
-		throw std::runtime_error(MSG_EMPTY);
 	if (input == "nan" || input == "nanf")
 		return std::numeric_limits<double>::quiet_NaN();
 	if (input == "+inf" || input == "+inff")
 		return std::numeric_limits<double>::infinity();
 	if (input == "-inf" || input == "-inff")
 		return -std::numeric_limits<double>::infinity();
-	if (((input.length() == 1 && !std::isdigit(input[0])) || (input.length() == 3 && input.find('\'') != input.rfind('\''))))
-		return static_cast<type_converter_t>(input.length() == 1 ? input[0] : input[1]);
+	if (((input.length() == 1 && !std::isdigit(static_cast<unsigned char>(input[0])))
+		|| (input.length() == 3 && input[0] == '\'' && input[2] == '\'')))
+		return (static_cast<type_converter_t>(input.length() == 1 ? input[0] : input[1]));
 
 	std::stringstream s(input);
 	type_converter_t temps;
