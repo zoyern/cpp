@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -24,13 +24,16 @@ public:
     ~Array() {delete[] _array;}
 	Array() : _array(NULL), _size(0) {}
 	Array(const Array<T> &cpy) : _array(NULL), _size(0) {*this = cpy;}
-    Array(unsigned int n) : _array(new T[n]()), _size(n) {}
+    Array(unsigned int n) : _array(n ? new T[n]() : NULL), _size(n) {}
     
-    Array<T>	&operator=(const Array<T> &cpy) { if (this == &cpy) return (*this); 
+    Array<T>	&operator=(const Array<T> &cpy) {
+		if (this == &cpy) return (*this); 
+		T	*buf = !cpy._size ? NULL : new T[_size];
+
+		for (unsigned int i = 0; i < cpy._size; ++i) {buf[i] = cpy._array[i];}
 		delete[] _array;
+		_array = buf;
 		_size = cpy._size;
-		_array = new T[_size];
-		for (unsigned int i = 0; i < _size; ++i) {_array[i] = cpy._array[i];}
 		return (*this);
 	}
 	T		&operator[](unsigned int index) {if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
