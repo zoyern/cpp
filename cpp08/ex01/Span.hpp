@@ -15,6 +15,10 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
+#include <cstddef>
+#include <iterator>
+#include <numeric>
 
 #define MSG_OVERFLOW "Span is full !"
 #define MSG_MISS_NUMBERS "Not enough numbers to find a span !"

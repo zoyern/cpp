@@ -13,7 +13,7 @@
 #include "Span.hpp"
 
 Span::~Span() {}
-Span::Span() : _n(0), _numbers(0){}
+Span::Span() : _n(0), _numbers(){}
 Span::Span(unsigned int N) : _n(N), _numbers(0){}
 Span::Span(const Span &cpy) { *this = cpy;}
 
@@ -36,17 +36,13 @@ int Span::shortestSpan() {
 
     std::vector<int> sorted(_numbers);
     std::sort(sorted.begin(), sorted.end());
-    int minSpan = sorted[1] - sorted[0];
-    for (size_t i = 2; i < sorted.size(); ++i) {
-        int currentSpan = sorted[i] - sorted[i-1];
-        if (currentSpan < minSpan)
-            minSpan = currentSpan;
-    }
-    return (minSpan);
+    std::adjacent_difference(sorted.begin(), sorted.end(), sorted.begin());
+    return (*std::min_element(sorted.begin() + 1, sorted.end()));
 }
 
 int Span::longestSpan() {
     if (_numbers.size() < 2)
         throw (std::logic_error(MSG_MISS_NUMBERS));
-    return (*std::max_element(_numbers.begin(), _numbers.end()) - *std::min_element(_numbers.begin(), _numbers.end()));
+    return (*std::max_element(_numbers.begin(), _numbers.end())
+		- *std::min_element(_numbers.begin(), _numbers.end()));
 }
