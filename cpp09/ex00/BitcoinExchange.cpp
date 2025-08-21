@@ -39,21 +39,24 @@ bool    BitcoinExchange::checkDate(const std::string &input)
         && t <= std::time(0));
 }
 
+
+// 2011-04-14,0.99
+// 2012-01-11 | 2147483648
+
+
+
 void BitcoinExchange::parse(const std::string &input)
 {
     std::ifstream src(input.c_str());
-    std::stringstream s(input);
-    float value;
-    std::string date;
     std::map<std::string, float> m;
     
-    while (std::getline(s, date,','))
-    {
-        cout<<num<<" ";.
-    }
-    for ( line; std::getline(src, line); ) 
-		if (!())
-    if (value < MIN_VALUE)
+    // get line
+    for ( std::string line; std::getline(src, line); ) 
+        std::stringstream s(line);
+
+    float value;
+    std::string date;
+        if (value < MIN_VALUE)
         throw (std::runtime_error(ERR_NEGATIVE));
     if (value > MAX_VALUE)
         throw (std::runtime_error(ERR_LARGE));

@@ -27,6 +27,18 @@ void	PhoneBook::add()
 		(void)(++_index %= LIST_SIZE));
 }
 
+while (condition)
+{
+	/* code */
+}
+
+do
+{
+	/* code */
+} while (condition);
+
+
+
 void	PhoneBook::get()
 {
 	std::string fields[] = FIELDS;
