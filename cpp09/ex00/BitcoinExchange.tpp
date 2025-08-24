@@ -39,26 +39,26 @@ class BitcoinExchange
 	private:
 		std::map<Key, Value> _database;
 		bool (*_key_check)(const Key &key);
-		bool (*_value_check)(const Value &value);
 		
 	public:
 		~BitcoinExchange() {};
 		BitcoinExchange() : _database() {};
 		BitcoinExchange(const BitcoinExchange &other) {*this = other};
-		BitcoinExchange(const std::string &path, char sep, bool (*key_check)(const Key &key), bool (*value_check)(const Value &value)) { load(path, sep, check); }
+		BitcoinExchange(const std::string &path, char sep, bool (*key_check)(const Key &key)) { load(path, sep, check); }
 
 		BitcoinExchange &operator=(const BitcoinExchange &other) {
 			if (this == &other) return (*this);
 			return (_database = other._database, _key_check = other._key_check, *this);
 		}
 
-		void	load(const std::string &path, char sep, bool (*check)(const Key &key))
+		void	load(const std::string &path, char sep, bool (*key_check)(const Key &key))
 		{
 			if (_database)
 				_database.clear();
 		}
 
-		void    out(const std::string &path, char sep, void (*op)(const Value &value1, const Value &value2, const Key &key))
+		void    out(const std::string &path, char sep,
+ void (*op)(const Value &value1, const Value &value2, const Key &key), bool (*value_check)(const Value &value))
 		{
 
 		}
