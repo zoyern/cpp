@@ -11,7 +11,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.tpp"
+#include "BitcoinExchange.hpp"
+#include <iostream>
+#include <ctime>
+#include <stdexcept>
 
 bool    is_date(const std::string &key)
 {
@@ -36,16 +39,15 @@ bool	is_value(const double &value) {
 	return (true);
 }
 
-void operation(const double &value1, const double &value2, const std::string &key)
+void operation(const double &rate, const double &amount, const std::string &key)
 {
-	std::cout << key << " => " << value1 << " * " << value2 << " = " << value1 * value2 << std::endl;
+	std::cout << key << " => " << amount << " = " << (rate * amount) << std::endl;
 }
-
 
 int main(int ac, char **av){
     if (ac != 2) { return (std::cerr << ERR_OPEN << std::endl, 1); }
 
-    try { BitcoinExchange<std::string,double> (PATH_DATA, SEP_DATA, &is_date).out(av[1], SEP_INPUT,&is_value, &operation);}
+    try { BitcoinExchange<std::string,double> (PATH_DATA, SEP_DATA, &is_date).out(av[1], SEP_INPUT, &operation, &is_value);}
     catch (const std::exception& e) { return (std::cerr << e.what() << std::endl, 1); }
     
     return (0);
