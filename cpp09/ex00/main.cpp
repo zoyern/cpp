@@ -47,7 +47,7 @@ void operation(const double &rate, const double &amount, const std::string &key)
 int main(int ac, char **av){
     if (ac != 2) { return (std::cerr << ERR_OPEN << std::endl, 1); }
 
-    try { BitcoinExchange<std::string,double> (PATH_DATA, SEP_DATA, &is_date).out(av[1], SEP_INPUT, &operation, &is_value);}
+    try { BitcoinExchange<std::string, double> (PATH_DATA, SEP_DATA, &is_date).out(av[1], SEP_INPUT, &operation, &is_value);}
     catch (const std::exception& e) { return (std::cerr << e.what() << std::endl, 1); }
     
     return (0);
