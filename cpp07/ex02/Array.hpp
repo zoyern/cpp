@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,35 +13,24 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
-#include <algorithm>
 #include <stdexcept>
-#include <cstddef>
-#include <iterator>
-#include <numeric>
-#include <climits>
 
-#define MSG_OVERFLOW "Span is full !"
-#define MSG_MISS_NUMBERS "Not enough numbers to find a span !"
-
-class Span
-{
+template <typename T>
+class Array {
 private:
-    unsigned int        _n;
-    std::vector<int>    _numbers;
+	T				*_array;
+	unsigned int	_size;
 public:
-    ~Span();
-    Span();
-    Span(unsigned int N);
-    Span(const Span &cpy);
-    Span &operator=(const Span &cpy);
+    ~Array();
+	Array();
+	Array(const Array<T> &cpy);
+    Array(unsigned int n);
+    
+    Array<T>	&operator=(const Array<T> &cpy);
+	T			&operator[](unsigned int index);
+	const T		&operator[](unsigned int index) const;
 
-    void	addNumber(int n);
-    int		shortestSpan();
-    int		longestSpan();
-
-	template<typename Iterator>
-    void    addNumbers(Iterator begin, Iterator end);
+	unsigned int	size() const;
 };
 
-#include "Span.tpp"
+#include "Array.tpp"

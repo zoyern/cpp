@@ -11,33 +11,33 @@
 /* ************************************************************************** */
 
 #pragma once
-
-#include <iostream>
-#include <stdexcept>
+#include "Array.hpp"
 
 template <typename T>
-class Array {
-private:
-	T				*_array;
-	unsigned int	_size;
-public:
-    ~Array() {delete[] _array;}
-	Array() : _array(NULL), _size(0) {}
-	Array(const Array<T> &cpy) : _array(NULL), _size(0) {*this = cpy;}
-    Array(unsigned int n) : _array(n ? new T[n]() : NULL), _size(n) {}
-    
-    Array<T>	&operator=(const Array<T> &cpy) {
-		if (this == &cpy) return (*this); 
-		T	*buf = !cpy._size ? NULL : new T[_size];
+Array<T>::~Array() {delete[] _array;}
+template <typename T>
+Array<T>::Array() : _array(NULL), _size(0) {}
+template <typename T>
+Array<T>::Array(const Array<T> &cpy) : _array(NULL), _size(0) {*this = cpy;}
+template <typename T>
+Array<T>::Array(unsigned int n) : _array(n ? new T[n]() : NULL), _size(n) {}
 
-		for (unsigned int i = 0; i < cpy._size; ++i) {buf[i] = cpy._array[i];}
-		delete[] _array;
-		_array = buf;
-		_size = cpy._size;
-		return (*this);
-	}
-	T		&operator[](unsigned int index) {if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
-	const T	&operator[](unsigned int index) const {	if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
+template <typename T>
+Array<T>	&Array<T>::operator=(const Array<T> &cpy) {
+	if (this == &cpy) return (*this); 
+	T	*buf = !cpy._size ? NULL : new T[_size];
 
-	unsigned int	size() const {return _size;};
-};
+	for (unsigned int i = 0; i < cpy._size; ++i) {buf[i] = cpy._array[i];}
+	delete[] _array;
+	_array = buf;
+	_size = cpy._size;
+	return (*this);
+}
+template <typename T>
+T		&Array<T>::operator[](unsigned int index) {if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
+
+template <typename T>
+const T	&Array<T>::operator[](unsigned int index) const {	if (index >= _size) throw std::out_of_range("Index out of bounds"); return _array[index];}
+
+template <typename T>
+unsigned int	Array<T>::size() const {return _size;};
