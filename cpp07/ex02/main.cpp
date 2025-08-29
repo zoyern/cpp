@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.tpp"
+#include "Array.hpp"
 #include <iostream>
 #include <string>
 
 #define TEST_SIZE 5
 
 template <typename T>
-void printArray(const Array<T>& arr) {       // <- const ref (cf. point 3)
+void printArray(const Array<T>& arr) {
     for (unsigned int i = 0; i < arr.size(); ++i)
         std::cout << "[" << i << "] = " << arr[i] << "\n";
 }
@@ -70,7 +70,7 @@ int main() {
 
     std::cout << "\n==== [7] Double array with default values ====\n";
     Array<double> dblArray(3);
-    printArray(dblArray); // avec new T[n]() => 0.0, 0.0, 0.0
+    printArray(dblArray);
 
     std::cout << "\n==== All tests passed if no crash ====\n";
     return 0;

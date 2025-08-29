@@ -12,17 +12,14 @@
 
 #include "iter.tpp"
 
-// Fonction 1 : Ajoute "42" à la fin d'une string
 void append42(std::string &s) {
     s += "42";
 }
 
-// Fonction 2 : Multiplie un entier par 2
 void multiplyByTwo(int &n) {
     n *= 2;
 }
 
-// Fonction 3 : Met un bool à true
 void setTrue(bool &b) {
     b = true;
 }
