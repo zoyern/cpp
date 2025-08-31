@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                :+:      :+:    :+:   */
+/*   RPN.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,30 +13,27 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <stack>
+#include <list>
 
-#define MSG_OVERFLOW "Span is full !"
-#define MSG_MISS_NUMBERS "Not enough numbers to find a span !"
-
-class Span
+class RPN
 {
 private:
-    unsigned int        _n;
-    std::vector<int>    _numbers;
+    std::stack<long, std::list<long>> _numbers;
+
+	~RPN();
+    RPN();
+    RPN(unsigned int N);
+    RPN(const RPN &cpy);
+    RPN &operator=(const RPN &cpy);
 public:
-    ~Span();
-    Span();
-    Span(unsigned int N);
-    Span(const Span &cpy);
-    Span &operator=(const Span &cpy);
 
-    void	addNumber(int n);
-    int		shortestSpan();
-    int		longestSpan();
+	static long out(const std::string &str);
 
-	template<typename Iterator>
-    void    addNumbers(Iterator begin, Iterator end);
+	static long add(long a, long b);
+	static long sub(long a, long b);
+	static long mul(long a, long b);
+	static long div(long a, long b);
+
 };
-
-#include "Span.tpp"

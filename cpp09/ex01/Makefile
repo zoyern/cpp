@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2025/06/12 16:48:28 by marvin           ###   ########.fr        #
+#    Updated: 2025/08/31 16:22:39 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = span
+NAME        = RPN
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj
