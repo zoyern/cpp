@@ -12,7 +12,7 @@
 
 #include <vector>
 #include <list>
-#include "easyfind.tpp"
+#include "easyfind.hpp"
 
 
 int main() {

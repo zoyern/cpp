@@ -11,23 +11,27 @@
 /* ************************************************************************** */
 
 #pragma once
-#include "MutantStack.hpp"
+
+#include <iostream>
+#include <stack>
 
 template <typename T>
-MutantStack<T>::~MutantStack() {}
-template <typename T>
-MutantStack<T>::MutantStack() : std::stack<T>() {}
-template <typename T>
-MutantStack<T>::MutantStack(MutantStack const &cpy) : std::stack<T>(cpy) {}
+class MutantStack : public std::stack<T>
+{
+public:
+    typedef typename std::stack<T>::container_type::iterator iterator;
+	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-template <typename T>
-MutantStack<T>	&MutantStack<T>::operator=(const MutantStack &cpy) { return (std::stack<T>::operator=(cpy), *this); }
+	~MutantStack();
+	MutantStack();
+	MutantStack(MutantStack const &cpy);
 
-template <typename T>
-typename MutantStack<T>::iterator		MutantStack<T>::begin(){ return (this->c.begin()); }
-template <typename T>
-typename MutantStack<T>::iterator		MutantStack<T>::end(){ return (this->c.end()); }
-template <typename T>
-typename MutantStack<T>::const_iterator	MutantStack<T>::begin() const { return this->c.begin(); }
-template <typename T>
-typename MutantStack<T>::const_iterator	MutantStack<T>::end() const { return this->c.end(); }
+	MutantStack	&operator=(const MutantStack &cpy);
+
+    iterator		begin();
+    iterator		end();
+	const_iterator	begin() const;
+    const_iterator	end() const;
+};
+
+#include "MutantStack.tpp"

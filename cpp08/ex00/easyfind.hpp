@@ -11,16 +11,12 @@
 /* ************************************************************************** */
 
 #pragma once
-#include "easyfind.hpp"
 
-template <typename T>
-typename T::iterator easyfind(T &container, int value) {
-    typename T::iterator it = std::find(container.begin(), container.end(), value);
-    return (it != container.end()) ? it : (throw std::runtime_error(FINVALID), it);
-}
+#include <iostream>
+#include <algorithm>
+#include <stdexcept>
 
-template <typename T>
-typename T::const_iterator easyfind(const T &container, int value) {
-    typename T::const_iterator it = std::find(container.begin(), container.end(), value);
-    return (it != container.end()) ? it : (throw std::runtime_error(FINVALID), it);
-}
+#define FSUCCES "Valeur trouvée : "
+#define FINVALID "Valeur non trouvée !"
+
+#include "easyfind.tpp"

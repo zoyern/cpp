@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MutantStack.tpp"
+#include "MutantStack.hpp"
 
 int main()
 {
