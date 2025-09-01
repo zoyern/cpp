@@ -16,11 +16,18 @@
 #include <algorithm>
 #include <stack>
 #include <list>
+#include <sstream>
 
 class RPN
 {
 private:
-    std::stack<long, std::list<long>> _numbers;
+    static std::stack<long, std::list<long> > _stack;
+
+	static bool	ops(const std::string &input);
+	static long add(long a, long b);
+	static long sub(long a, long b);
+	static long mul(long a, long b);
+	static long div(long a, long b);
 
 	~RPN();
     RPN();
@@ -28,12 +35,5 @@ private:
     RPN(const RPN &cpy);
     RPN &operator=(const RPN &cpy);
 public:
-
-	static long out(const std::string &str);
-
-	static long add(long a, long b);
-	static long sub(long a, long b);
-	static long mul(long a, long b);
-	static long div(long a, long b);
-
+	static long out(const std::string &input);
 };

@@ -20,7 +20,7 @@ CC          = c++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = main.cpp Span.cpp
+SRC         = main.cpp RPN.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 
@@ -46,6 +46,30 @@ fclean: clean
 	@echo "Clean   : ./$(NAME)"
 
 re: fclean all
+
+tests: all
+	@echo "=== Tests simples ==="
+	./$(NAME) "0"
+	./$(NAME) "1 2 +"
+	./$(NAME) "3 4 *"
+	./$(NAME) "9 3 /"
+	./$(NAME) "0 3 /"
+	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	./$(NAME) "7 7 * 7 -"
+	./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
+	./$(NAME) "3 3 3 + +"
+	
+	@echo "\n=== Tests erreurs & cas limites ==="
+	./$(NAME) "42 55 +"
+	./$(NAME) "4 0 /"
+	./$(NAME) "1 +"
+	./$(NAME) "+"
+	./$(NAME) "a b +"          
+	./$(NAME) "1 2 &"
+	./$(NAME) ""
+	./$(NAME) " "
+	./$(NAME) "9 9 9 +"
+
 
 # PHONY
 .PHONY: all clean fclean re

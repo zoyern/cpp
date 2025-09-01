@@ -12,9 +12,10 @@
 
 #include "RPN.hpp"
 
+std::stack<long, std::list<long> > RPN::_stack;
+
 RPN::~RPN() {}
-RPN::RPN() : _n(0), _numbers(0){}
-RPN::RPN(unsigned int N) : _n(N), _numbers(0){}
+RPN::RPN() {}
 RPN::RPN(const RPN &cpy) { *this = cpy;}
 
 RPN    &RPN::operator=(const RPN &cpy) {
@@ -22,59 +23,42 @@ RPN    &RPN::operator=(const RPN &cpy) {
     return (*this);
 }
 
-long RPN::add(long a, long b) { return a + b; }
-long RPN::sub(long a, long b) { return a - b; }
-long RPN::mul(long a, long b) { return a * b; }
-long RPN::div(long a, long b) { return b ? a / b : throw (std::runtime_error("Error")); }
+long    RPN::add(long a, long b) { return (a + b); }
+long    RPN::sub(long a, long b) { return (a - b); }
+long    RPN::mul(long a, long b) { return (a * b); }
+long    RPN::div(long a, long b) { return (b ? a / b : throw (std::runtime_error("Error"))); }
 
+bool    RPN::ops(const std::string &input)
+{
+    struct {std::string key; long (*op)(long, long);} funcs[] = {
+		{"+", RPN::add},
+		{"-", RPN::sub},
+		{"*", RPN::mul},
+		{"/", RPN::div},
+		{"", 0}
+	};
 
-//long RPN::out(const std::string &expression) {
-    //static const char ops[] = "+-*/";
-    /*static operation_func funcs[] = {add, sub, mul, div};
-    
-    stack_type stack;
-    std::istringstream iss(expression);
-    std::string token;
-    
-    while (iss >> token) {
-        const char* found = std::strchr(ops, token[0]);
-        if (found && token.size() == 1) {
-            if (stack.size() < 2) throw RPNException();
-            long b = stack.top(); stack.pop();
-            long a = stack.top(); stack.pop();
-            stack.push(funcs[found - ops](a, b));
-        } else {
-            std::istringstream ns(token);
-            long num;
-            if (!(ns >> num) || !ns.eof() || num < 0 || num >= 10)
-                throw RPNException();
-            stack.push(num);
+    if (input.size() == 1 && std::isdigit(input[0]))
+        return (_stack.push(input[0] -  '0'), true);
+    for (int i = 0; !funcs[i].key.empty(); ++i) {
+        if (funcs[i].key == input)
+        {
+            if (_stack.size() < 2) return (false);
+            long b = _stack.top(); _stack.pop();
+            long a = _stack.top(); _stack.pop();
+            return (_stack.push(funcs[i].op(a, b)), true);
         }
     }
-    if (stack.size() != 1) throw RPNException();
-    return stack.top();
-}*/
+    return (false);
+}
+long    RPN::out(const std::string &input)
+{
+    while (!_stack.empty()) _stack.pop();
+    std::istringstream iss(input);
+    
+    for (std::string token; iss >> token;)
+        if (!ops(token)) throw (std::runtime_error("Error"));
+    if (_stack.size() == 1) return (_stack.top());
 
-//    static long evaluate(const std::string &expr) {
-      //  static const char ops[] = "+-*/";
-    //   static op_func funcs[] = {add, sub, mul, div};
-       /*
-        std::stack<long, std::list<long> > stack;
-        std::istringstream iss(expr);
-        std::string token;
-        
-        while (iss >> token) {
-            if (token.size() == 1) {
-                if (const char *pos = std::strchr(ops, token[0])) {
-                    if (stack.size() < 2) throw std::runtime_error("Error");
-                    long b = stack.top(); stack.pop();
-                    long a = stack.top(); stack.pop();
-                    stack.push(funcs[pos - ops](a, b));
-                } else if (std::isdigit(token[0])) {
-                    stack.push(token[0] - '0');
-                } else throw std::runtime_error("Error");
-            } else throw std::runtime_error("Error");
-        }
-        
-        return stack.size() == 1 ? stack.top() : throw std::runtime_error("Error"), 0;
-    }*/
+    throw (std::runtime_error("Error"));
+}
