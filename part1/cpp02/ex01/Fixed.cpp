@@ -32,5 +32,3 @@ int		Fixed::getRawBits() const { return (_value);}
 void	Fixed::setRawBits(int const raw) { _value = raw;}
 float	Fixed::toFloat(void) const {return ((float)_value / (float)(1 << _bits));}
 int		Fixed::toInt(void) const {return (_value >> _bits);}
-
-

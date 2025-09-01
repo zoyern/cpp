@@ -43,10 +43,10 @@ class Fixed {
 		bool	operator>=(const Fixed &fixed) const;
 		bool	operator!=(const Fixed &fixed) const;
 		bool	operator==(const Fixed &fixed) const;
-		float	operator+(const Fixed &fixed) const;
-		float	operator-(const Fixed &fixed) const;
-		float	operator*(const Fixed &fixed) const;
-		float	operator/(const Fixed &fixed) const;
+		Fixed	operator+(const Fixed &fixed) const;
+		Fixed	operator-(const Fixed &fixed) const;
+		Fixed	operator*(const Fixed &fixed) const;
+		Fixed	operator/(const Fixed &fixed) const;
 
 		int		getRawBits() const;
 		void	setRawBits(int const raw);

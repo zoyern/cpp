@@ -16,16 +16,16 @@
 template <typename T>
 Array<T>::~Array() {delete[] _array;}
 template <typename T>
-Array<T>::Array() : _array(NULL), _size(0) {}
+Array<T>::Array() : _array(0), _size(0) {}
 template <typename T>
-Array<T>::Array(const Array<T> &cpy) : _array(NULL), _size(0) {*this = cpy;}
+Array<T>::Array(const Array<T> &cpy) : _array(0), _size(0) {*this = cpy;}
 template <typename T>
 Array<T>::Array(unsigned int n) : _array(n ? new T[n]() : NULL), _size(n) {}
 
 template <typename T>
 Array<T>	&Array<T>::operator=(const Array<T> &cpy) {
 	if (this == &cpy) return (*this); 
-	T	*buf = !cpy._size ? NULL : new T[_size];
+	T	*buf = !cpy._size ? 0 : new T[cpy._size];
 
 	for (unsigned int i = 0; i < cpy._size; ++i) {buf[i] = cpy._array[i];}
 	delete[] _array;
