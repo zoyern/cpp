@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 17:06:05 by almounib          #+#    #+#              #
-#    Updated: 2025/06/12 17:53:48 by marvin           ###   ########.fr        #
+#    Updated: 2025/09/17 23:09:21 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = mutantStack
+NAME        = PmergeMe
 
 BUILD_DIR   = build
 OBJ_DIR     = $(BUILD_DIR)/obj
