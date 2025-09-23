@@ -20,24 +20,20 @@
 
 
 int main(int argc, char** argv) {
-    if (argc < 2) {
-        std::cerr << "Error" << std::endl;
-        return 1;
-    }
-    
+    if (argc < 2)
+        return (std::cerr << "Error" << std::endl, 1);
     try {
-        
         // Tri avec vector et mesure du temps
         clock_t vectorStart = clock();
         std::vector<int> vectorResult = PmergeMe::sortVector<int>(argc - 1, argv + 1);
         clock_t vectorEnd = clock();
-        double vectorTime = static_cast<double>(vectorEnd - vectorStart) * 1e6 / CLOCKS_PER_SEC;
+        clock_t vectorTime = static_cast<double>(vectorEnd - vectorStart) * 1e6 / CLOCKS_PER_SEC;
         
         // Tri avec deque et mesure du temps
         clock_t dequeStart = clock();
         std::deque<int> dequeResult = PmergeMe::sortDeque<int>(argc - 1, argv + 1);
         clock_t dequeEnd = clock();
-       	double dequeTime  = static_cast<double>(dequeEnd - dequeStart) * 1e6 / CLOCKS_PER_SEC;
+       	clock_t dequeTime  = static_cast<double>(dequeEnd - dequeStart) * 1e6 / CLOCKS_PER_SEC;
         
 		// Affichage Before
         std::cout << "Before:\t";
@@ -61,10 +57,6 @@ int main(int argc, char** argv) {
         std::cout << "Time to process a range of " << (argc - 1) 
                   << " elements with std::deque  : " << dequeTime << " us" << std::endl;
         
-    } catch (const std::exception& e) {
-        std::cerr << "Error" << std::endl;
-        return 1;
-    }
-    
+    } catch (const std::exception& e) { return (std::cerr << e.what() << std::endl, 1); }
     return 0;
 }
