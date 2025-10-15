@@ -31,9 +31,8 @@ private:
 
 	~RPN();
     RPN();
-    RPN(unsigned int N);
-    RPN(const RPN &cpy);
-    RPN &operator=(const RPN &cpy);
+    RPN(const RPN &);
+    RPN &operator=(const RPN &);
 public:
 	static long out(const std::string &input);
 };
