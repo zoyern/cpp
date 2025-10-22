@@ -22,14 +22,14 @@ int main() {
 	v.push_back(42);
 
     std::list<int> l;
-	l.push_back(4);
+	l.push_back(6);
 	l.push_back(2);
-	l.push_back(0);
+	l.push_back(0);;
 
-    try { std::cout << "vector hit: " << *easyfind(v, 42) << "\n"; }
-    catch (std::exception& e) { std::cout << e.what() << "\n"; }
+    try { std::vector<int>::iterator vit = easyfind(v, 42); std::cout << "vector = ( " << *vit << " find at index : " << vit - v.begin() << " )"<< std::endl; }
+    catch (std::exception& e) { std::cout << "vector = " << e.what() << std::endl; }
 
-    try { std::cout << "list hit: " << *easyfind(l, 42) << "\n"; }
-    catch (std::exception& e) { std::cout << e.what() << "\n"; }
-    return 0;
+    try { std::list<int>::iterator lit = easyfind(l, 42); std::cout << "list = ( " << *lit << " find at index : " << std::distance(l.begin(), lit) << " )"<< std::endl; }
+    catch (std::exception& e) { std::cout << "list = " << e.what() << std::endl; }
+    return (0);
 }

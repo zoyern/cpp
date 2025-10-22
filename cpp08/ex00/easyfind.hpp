@@ -15,8 +15,18 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
+#include <sstream>
 
-#define FSUCCES "Valeur trouvée : "
-#define FINVALID "Valeur non trouvée !"
+#define F_INVALID "Valeur non trouvée !"
 
-#include "easyfind.tpp"
+template <typename T>
+typename T::iterator easyfind(T &container, int value) {
+    typename T::iterator it = std::find(container.begin(), container.end(), value);
+    return (it != container.end()) ? it : (throw std::runtime_error(F_INVALID));
+}
+
+template <typename T>
+typename T::const_iterator easyfind(const T &container, int value) {
+    typename T::const_iterator it = std::find(container.begin(), container.end(), value);
+    return (it != container.end()) ? it : (throw std::runtime_error(F_INVALID));
+}

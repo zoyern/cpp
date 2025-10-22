@@ -16,6 +16,7 @@
 
 int main() {
     try {
+        std::cout << "-----------Simple span" << std::endl;
         Span sp(10);
 
         sp.addNumber(6);
@@ -44,6 +45,7 @@ int main() {
     }
 
     try {
+        std::cout << "-----------error short span" << std::endl;
         Span sp2(3);
         sp2.addNumber(42);
         std::cout << sp2.shortestSpan() << '\n';
@@ -52,6 +54,7 @@ int main() {
     }
 
     try {
+        std::cout << "-----------error large span" << std::endl;
         Span sp3(3);
         sp3.addNumber(42);
         std::cout << sp3.longestSpan() << '\n';
@@ -60,17 +63,19 @@ int main() {
     }
 
 	try {
+        std::cout << "-----------big span" << std::endl;
         Span sp(15000);
         srand(time(0));
         for (int i = 0; i < 10000; i++) {
-            sp.addNumber(rand() % 1000000);
+            sp.addNumber(rand() % 1000000000);
         }
         
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
         
+        std::cout << "-----------adds overflow" << std::endl;
         std::vector<int> big_data;
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 5001; i++) {
             big_data.push_back(i * 100);
         }
         sp.addNumbers(big_data.begin(), big_data.end());
