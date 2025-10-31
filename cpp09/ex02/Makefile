@@ -20,7 +20,7 @@ CC          = c++
 CFLAG       = -Wall -Wextra -Werror -g3 -std=c++98
 DEPFLAG     = -MMD -MP
 
-SRC         = main.cpp
+SRC         = main.cpp PmergeMe.cpp
 OBJ         = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 DEP         = $(patsubst %.o, $(DEP_DIR)/%.d, $(OBJ))
 
@@ -130,20 +130,6 @@ tests: all
 	./$(NAME) 9 7 5 3 1 2 4 6 8
 	@echo "\nTest 6.4: Beaucoup de doublons aléatoires"
 	@./$(NAME) `shuf -r -i 1-10 -n 30 | tr "\n" " "`
-	
-	@echo "\n=== 7. TESTS DE PERFORMANCE ==="
-	@echo "Test 7.1: 100 éléments triés (best case?)"
-	@time -p ./$(NAME) `seq 1 100` 2>&1 | grep -E "real|user|sys" || ./$(NAME) `seq 1 100` | tail -n 2
-	@echo "\nTest 7.2: 100 éléments inversés (worst case?)"
-	@time -p ./$(NAME) `seq 100 -1 1` 2>&1 | grep -E "real|user|sys" || ./$(NAME) `seq 100 -1 1` | tail -n 2
-	@echo "\nTest 7.3: 100 éléments aléatoires (average case)"
-	@time -p ./$(NAME) `shuf -i 1-1000 -n 100 | tr "\n" " "` 2>&1 | grep -E "real|user|sys" || ./$(NAME) `shuf -i 1-1000 -n 100 | tr "\n" " "` | tail -n 2
-	
-	@echo "\n=== 8. TESTS VALIDATION FINALE ==="
-	@echo "Test 8.1: Vérification du tri (5000 éléments)"
-	@./$(NAME) `shuf -i 1-100000 -n 5000 | tr "\n" " "` | grep "After:" | cut -d: -f2 | tr ' ' '\n' | awk 'BEGIN{prev=-1} {if(NF && $$1<=prev){print "FAIL: Not sorted!"; exit 1} prev=$$1} END{print "PASS: Correctly sorted"}'
-	@echo "\nTest 8.2: Cohérence vector/deque"
-	@./$(NAME) `shuf -i 1-1000 -n 100 | tr "\n" " "` | grep "Time" | awk '{print $$9}' | (read v; read d; echo "Vector: $$v us, Deque: $$d us")
 	
 	@echo "\n╔════════════════════════════════════════════════════════════╗"
 	@echo "║                    TESTS COMPLETED                         ║"

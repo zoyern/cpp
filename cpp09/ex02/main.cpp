@@ -17,8 +17,6 @@
 #include <deque>
 #include <iomanip>
 
-
-
 int main(int argc, char** argv) {
     if (argc < 2)
         return (std::cerr << "Error" << std::endl, 1);
@@ -27,13 +25,13 @@ int main(int argc, char** argv) {
         clock_t vectorStart = clock();
         std::vector<int> vectorResult = PmergeMe::sortVector<int>(argc - 1, argv + 1);
         clock_t vectorEnd = clock();
-        clock_t vectorTime = static_cast<double>(vectorEnd - vectorStart) * 1e6 / CLOCKS_PER_SEC;
+        double vectorTime = static_cast<double>(vectorEnd - vectorStart) * 1e6 / CLOCKS_PER_SEC;
         
         // Tri avec deque et mesure du temps
         clock_t dequeStart = clock();
         std::deque<int> dequeResult = PmergeMe::sortDeque<int>(argc - 1, argv + 1);
         clock_t dequeEnd = clock();
-       	clock_t dequeTime  = static_cast<double>(dequeEnd - dequeStart) * 1e6 / CLOCKS_PER_SEC;
+       	double dequeTime  = static_cast<double>(dequeEnd - dequeStart) * 1e6 / CLOCKS_PER_SEC;
         
 		// Affichage Before
         std::cout << "Before:\t";
